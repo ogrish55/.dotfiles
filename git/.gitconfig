@@ -1,0 +1,12 @@
+[user]
+	email = kk@wexo.dk
+	name = wexokk
+[alias]
+	st = status
+	ch = checkout
+	pl = pull
+	ps = push
+[push]
+	default = current
+[url "git@github.com:"]
+	insteadOf = https://github.com/
