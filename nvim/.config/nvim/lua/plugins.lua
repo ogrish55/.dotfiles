@@ -46,15 +46,6 @@ return require('packer').startup(function(use)
   use { 'rose-pine/neovim', as = 'rose-pine' }
   use { 'navarasu/onedark.nvim' }
 
-  use {
-    "folke/which-key.nvim",
-    config = function()
-      vim.o.timeout = true
-      vim.o.timeoutlen = 500
-      require("which-key").setup {}
-    end
-  }
-
   -- Telescope
   use { 'nvim-telescope/telescope.nvim', tag = '0.1.0', requires = { {'nvim-lua/plenary.nvim'} }}
 
