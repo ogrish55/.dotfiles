@@ -13,6 +13,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+export PATH=/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH
 export PATH=/opt/homebrew/bin:$PATH
 export PATH="$PATH:$HOME/.composer/vendor/bin"
 
@@ -121,7 +122,6 @@ alias vim='nvim'
 alias vi='nvim'
 alias t='tmux'
 alias of='vim $(zfm select --files --multi)'
-alias sed='gsed'
 
 
 setopt HIST_IGNORE_ALL_DUPS
