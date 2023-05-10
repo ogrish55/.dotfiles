@@ -14,6 +14,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 export PATH=/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH
+export PATH=/opt/homebrew/opt/findutils/libexec/gnubin:$PATH
 export PATH=/opt/homebrew/bin:$PATH
 export PATH="$PATH:$HOME/.composer/vendor/bin"
 
