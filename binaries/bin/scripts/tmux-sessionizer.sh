@@ -4,7 +4,7 @@ if [[ $# -eq 1 ]]; then
   selected=$1
 else
   selected=$(find ~/Projects ~/fun -mindepth 1 -maxdepth 1 -type d | \
-    echo -e "$(cat -)\n/Users/wexokk\n/Users/wexokk/.config/nvim" | fzf)
+    echo -e "$(cat -)\n/Users/wexokk" | fzf)
 fi
 
 if [[ -z $selected ]]; then
