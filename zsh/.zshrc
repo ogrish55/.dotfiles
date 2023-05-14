@@ -99,17 +99,10 @@ source $ZSH/oh-my-zsh.sh
 #   export EDITOR='mvim'
 # fi
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ll='lsd -lha'
 alias ls='lsd --group-dirs first'
 alias fpm="wexo enter php"
@@ -163,7 +156,6 @@ if [ -f '/Users/wexokk/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/we
 
 # keybinds
 bindkey -s '^e' 'nvim $(fzf)\n'
-bindkey 'ç' fzf-cd-widget
 bindkey '^ ' autosuggest-execute
 bindkey '^P' up-line-or-beginning-search
 bindkey '^N' down-line-or-beginning-search
