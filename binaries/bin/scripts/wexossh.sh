@@ -5,29 +5,28 @@ server_details="/tmp/server_details_index.yaml"
 eval server_details_path=$server_details
 
 servers=($(yq 'keys' $server_details_path | sed 's/- //g'))
-declare -A myArray
+declare -A serversArray
 
 for server in "${servers[@]}"; do
   projects=($(yq ".[\"$server\"] | to_entries | .[].key" "$server_details_path"))
   for project in "${projects[@]}"; do
     env=$(yq ".[\"$server\"].$project | to_entries | .[].key" "$server_details_path" | sed 's/production/prod/g')
-    test="$project-$env"
+    concatted="$project-$env"
     strippedServer=$(echo "$server" | sed 's/\..*//')
-    myArray["$test"]="$strippedServer"
+    serversArray["$concatted"]="$strippedServer"
   done
 done
 
 fzfList=""
-for key in "${!myArray[@]}"; do
-  value="${myArray[$key]}"
-  #echo "Key: $key, Value: $value"
+for key in "${!serversArray[@]}"; do
+  value="${serversArray[$key]}"
   fzfList+="\n$key"
 done
 #remove leading newline
 fzfList="${fzfList#\\n}"
 
 selectedProject=$(echo -e "$fzfList" | fzf)
-selectedServer="${myArray[$selectedProject]}"
+selectedServer="${serversArray[$selectedProject]}"
 
 if [ -n "$selectedServer" ]; then
   ssh "$selectedServer"
