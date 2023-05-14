@@ -26,10 +26,17 @@ done
 fzfList="${fzfList#\\n}"
 
 selectedProject=$(echo -e "$fzfList" | fzf)
-selectedServer="${serversArray[$selectedProject]}"
+
+if [ -n "$selectedProject" ]; then
+  selectedServer="${serversArray[$selectedProject]}"
+else
+  echo "No projected selected. Exiting"
+  exit
+fi
 
 if [ -n "$selectedServer" ]; then
   ssh "$selectedServer"
 else
   echo "No server found for the selected project."
+  exit
 fi
