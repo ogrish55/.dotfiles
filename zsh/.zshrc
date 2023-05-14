@@ -124,8 +124,6 @@ setopt HIST_EXPIRE_DUPS_FIRST
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-[[ -s /Users/wexokk/.autojump/etc/profile.d/autojump.sh ]] && source /Users/wexokk/.autojump/etc/profile.d/autojump.sh
-
 autoload -U compinit && compinit -u
 #export PATH="/opt/homebrew/opt/php@8.0/bin:$PATH"
 export PATH="/opt/homebrew/opt/php@7.4/sbin:$PATH"
@@ -143,10 +141,10 @@ export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 export PATH=$PATH:$HOME/bin
 export PATH=$PATH:$HOME/bin/scripts
 
-# The next line updates PATH for the Google Cloud SDK.
+# Update PATH for Google Cloud SDK.
 if [ -f '/Users/wexokk/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/wexokk/google-cloud-sdk/path.zsh.inc'; fi
 
-# The next line enables shell command completion for gcloud.
+# Enabled shell completion for gcloud.
 if [ -f '/Users/wexokk/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/wexokk/google-cloud-sdk/completion.zsh.inc'; fi
 [[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
 [[ $commands[kubectl] ]] && source <(kubectl completion zsh)
@@ -154,7 +152,7 @@ if [ -f '/Users/wexokk/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/we
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 
-# keybinds
+# keybind
 bindkey -s '^e' 'nvim $(fzf)\n'
 bindkey '^ ' autosuggest-execute
 bindkey '^P' up-line-or-beginning-search
