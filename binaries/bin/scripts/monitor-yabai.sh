@@ -8,8 +8,10 @@ fi
 
 if [ $((resolution_width)) -gt 2560 ]; then
   echo "You be on da BIG monitor mon"
-  yabai -m config left_padding 50
-  yabai -m config right_padding 50
+  yabai -m config left_padding 450
+  yabai -m config right_padding 450
+  yabai -m config --space 4 right_padding 250
+  yabai -m config --space 4 left_padding 250
 else
   echo "You be on da SMALL monitor mon"
   yabai -m config left_padding 0
