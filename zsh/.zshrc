@@ -113,6 +113,7 @@ alias vim='nvim'
 alias vi='nvim'
 alias t='tmux'
 alias of='vim $(zfm select --files --multi)'
+alias wcm='wexocommit'
 
 
 setopt HIST_IGNORE_ALL_DUPS
