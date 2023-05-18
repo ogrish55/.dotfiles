@@ -4,18 +4,11 @@ declare -A servers
 
 json_string=$(redis-cli GET servers)
 
-json_string=${json_string#\"}
-json_string=${json_string%\"}
+key_value_array=$(echo "$json_string" | jq -r 'to_entries | map([.key, .value])[] | @sh')
 
-keys=($(echo "$json_string" | jq -r 'keys[]'))
-values=($(echo "$json_string" | jq -r '.[]'))
-
-# Iterate over the keys and values
-for ((i=0; i<${#keys[@]}; i++)); do
-    key=${keys[$i]}
-    value=${values[$i]}
-    servers["$key"]="$value"
-done
+while IFS= read -r line; do
+  eval "servers+=($line)"
+done <<< "$key_value_array"
 
 for key in "${!servers[@]}"; do
   fzfList+="\n$key"
