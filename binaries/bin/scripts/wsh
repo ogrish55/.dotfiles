@@ -1,22 +1,23 @@
 #!/usr/bin/env bash
 
 server_details="/tmp/server_details_index.yaml"
+#server_details="~/.dotfiles/binaries/bin/scripts/server_details_index.yaml"
+
 eval server_details_path=$server_details
 
 declare -A serversArray
 
 lines=$(grep ":" $server_details_path)
-currentServer=''
 
-# rewrite the below code to ignore the srv*
-# and instead look for the server value inside domain:
-# maulund: { production: { server: srv100.wexohosting.com } }
 while IFS= read -r line; do
-  result=$(echo "$line" | awk -F ':' '{print $1 $2}' | sed 's/ { /-/g' | sed 's/production/prod/g')
-  if [[ $result == srv* ]]; then
-    currentServer=$result
-  else
-   serversArray["$result"]="$currentServer"
+  result=$(echo "$line" | awk -F ':' '/server/ {print $1 $2 $4}' | tr -d '{}' | sed 's/   / /g' | sed 's/production/prod/g')
+
+  if [ -n "$result" ]; then
+
+    project=$(echo "$result" | awk '{ print $1 "-" $2 }')
+    server=$(echo "$result" | awk '{ print $3 }')
+
+    serversArray["$project"]="$server"
   fi
 done <<< $lines
 
