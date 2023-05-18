@@ -8,7 +8,6 @@ declare -A serversArray
 lines=$(grep ":" $server_details_path)
 currentServer=''
 
-# implement redis for dis.
 # rewrite the below code to ignore the srv*
 # and instead look for the server value inside domain:
 # maulund: { production: { server: srv100.wexohosting.com } }

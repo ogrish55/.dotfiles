@@ -9,6 +9,9 @@ yabai -m config top_padding                 30
 yabai -m config --space 2 window_shadow off
 yabai -m config --space 2 window_gap 15
 
+## ===========  Screen 3 (Phpstorm)  ===========
+yabai -m config --space 3 layout          float
+
 ## ===========   Screen 4 (Socials)  ===========
 yabai -m config --space 4 window_shadow off
 yabai -m config --space 4 window_gap 0

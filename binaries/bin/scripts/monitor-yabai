@@ -16,4 +16,6 @@ else
   echo "You be on da SMALL monitor mon"
   yabai -m config left_padding 0
   yabai -m config right_padding 0
+  yabai -m config --space 4 right_padding 0
+  yabai -m config --space 4 left_padding 0
 fi
