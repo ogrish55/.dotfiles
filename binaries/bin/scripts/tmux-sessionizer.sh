@@ -4,7 +4,9 @@ if [[ $# -eq 1 ]]; then
   selected=$1
 else
   selected=$(find ~/Projects ~/fun -mindepth 1 -maxdepth 1 -type d | \
-    echo -e "$(cat -)\n/Users/wexokk" | fzf)
+    echo -e "$(cat -)\n/Users/wexokk" | \
+    echo -e "$(cat -)\n/Users/wexokk/.dotfiles" \
+    | fzf)
 fi
 
 if [[ -z $selected ]]; then
@@ -16,6 +18,9 @@ tmux_running=$(pgrep tmux)
 
 if [[ "$selected_name" == "wexokk" ]]; then
   selected_name="HOME"
+elif [[ "$selected_name" == "_dotfiles" ]]; then
+  selected-name="DOTFILES"
+  echo "$selected_name"
 fi
 
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
