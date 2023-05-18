@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+gitBranch=$(git symbolic-ref -q --short HEAD)
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+BLUE='\033[0;34m'
+RESET='\033[0m'
+
+# does the git branch contain '/' ?
+if [[ "$gitBranch" == *"/"* ]]; then
+  gitBranch=$(echo "$gitBranch" | awk -F '/' '{print $1}'| xargs -I {} echo "[{}]")
+
+  echo -e "\n${GREEN}\t\tEnter commit message\n${RESET}"
+  read -p "$gitBranch " commitMessage
+
+  modifiedCommitMessage="$gitBranch $commitMessage"
+  git commit -m "$modifiedCommitMessage"
+
+else
+  # branch name doesn't contain a '/' so we can't  extract task id
+  
+  echo -e "\n${RED}\t\tbranch name doesn't contain task id - regular commit\n${RESET}"
+  read -p "Commit message: " commitMessage
+  git commit -m "$commitMessage"
+fi
+
