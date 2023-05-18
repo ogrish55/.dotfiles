@@ -1,7 +1,4 @@
-#!/bin/bash
-
-#echo "Enter desired namespace"
-#read namespace
+#!/usr/bin/env bash
 
 namespace=$(kubectl get namespace 2> /dev/null | tail -n+2 | fzf | awk '{print $1}' )
 echo "$namespace"
