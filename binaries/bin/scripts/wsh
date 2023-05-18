@@ -1,39 +1,39 @@
 #!/usr/bin/env bash
 
-server_details="/tmp/server_details_index.yaml"
-#server_details="~/.dotfiles/binaries/bin/scripts/server_details_index.yaml"
+declare -A servers
 
-eval server_details_path=$server_details
+json_string=$(redis-cli GET servers)
 
-declare -A serversArray
+json_string=${json_string#\"}
+json_string=${json_string%\"}
 
-lines=$(grep ":" $server_details_path)
+keys=($(echo "$json_string" | jq -r 'keys[]'))
+values=($(echo "$json_string" | jq -r '.[]'))
 
-while IFS= read -r line; do
-  result=$(echo "$line" | awk -F ':' '/server/ {print $1 $2 $4}' | tr -d '{}' | sed 's/   / /g' | sed 's/production/prod/g')
+# Iterate over the keys and values
+for ((i=0; i<${#keys[@]}; i++)); do
+    key=${keys[$i]}
+    value=${values[$i]}
+    servers["$key"]="$value"
+done
 
-  if [ -n "$result" ]; then
-
-    project=$(echo "$result" | awk '{ print $1 "-" $2 }')
-    server=$(echo "$result" | awk '{ print $3 }')
-
-    serversArray["$project"]="$server"
-  fi
-done <<< $lines
-
-
-# add all the found projects to a newline seperated string for fzf
-for key in "${!serversArray[@]}"; do
+for key in "${!servers[@]}"; do
   fzfList+="\n$key"
 done
 
 #remove leading newline
 fzfList="${fzfList#\\n}"
 
+if [ -z "$fzfList" ]; then
+  echo -e "fzfList is empty. \nMake sure /tmp/server_details_index.yaml exists."
+  echo "Then run wexo_server_cacher"
+  exit
+fi
+
 selectedProject=$(echo -e "$fzfList" | fzf)
 
 if [ -n "$selectedProject" ]; then
-  selectedServer="${serversArray[$selectedProject]}"
+  selectedServer="${servers[$selectedProject]}"
   if [ -n "$selectedServer" ]; then
     ssh "$selectedServer"
   else

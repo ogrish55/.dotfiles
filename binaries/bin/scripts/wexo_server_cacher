@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+server_details="/tmp/server_details_index.yaml"
+#server_details="~/.dotfiles/binaries/bin/scripts/server_details_index.yaml"
+
+eval server_details_path=$server_details
+
+declare -A serversArray
+
+lines=$(grep ":" $server_details_path)
+
+while IFS= read -r line; do
+  result=$(echo "$line" | awk -F ':' '/server/ {print $1 $2 $4}' | tr -d '{}' | sed 's/   / /g' | sed 's/production/prod/g' | tr -d ',')
+
+  if [ -n "$result" ]; then
+    project=$(echo "$result" | awk '{ print $1 "-" $2 }')
+    server=$(echo "$result" | awk '{ print $3 }')
+
+    serversArray["$project"]="$server"
+  fi
+done <<< $lines
+
+data='{}'
+for i in "${!serversArray[@]}"; do
+  data=$(jq -n --arg data "$data" \
+                 --arg key "$i"     \
+                 --arg value "${serversArray[$i]}" \
+                 '$data | fromjson + { ($key) : ($value) }')
+done
+redis-cli SET servers "$data"
