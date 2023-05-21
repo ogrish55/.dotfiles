@@ -1,0 +1,93 @@
+"  cd ~/Library/Application\ Support/Jetbrains  "
+"  find * -name "keymaps" "
+"  less PhpStorm2023.1/keymaps/macOS\ copy.xml" <-- Example
+
+let mapleader=" "
+
+""" Plugins -----
+set surround
+set argtextobj
+set highlightedyank
+set matchit
+" ------------------------- Plugin settings -------------------------
+" let g:argtextobj_pairs="[:],(:),<:>"
+let g:highlightedyank_highlight_duration = 200
+let g:highlightedyank_highlight_in_visual = 0
+
+" Mappings ----------
+nmap <leader>a <Action>(Annotate)
+nmap <leader>e <Action>(GotoNextError)
+nmap <leader>r <Action>(GotoPreviousError)
+nmap <leader>x <Action>(FileStructurePopup)
+nmap <leader>o <Action>(FileStructurePopup)
+
+" <leader>t in normal and visualmode for surround with function"
+vmap <leader>t <Action>(SurroundWith)
+nmap <leader>t <Action>(SurroundWith)
+
+nmap <leader>s /
+nmap <leader>m <Action>(ToggleBookmark)
+nmap <leader>b <Action>(ShowBookmarks)
+nmap <C-o> <Action>(Back)
+nmap <C-i> <Action>(Forward)
+
+" ------------------------- Harpoon -------------------------
+"nmap <leader>1 :action GotoHarpoon1<cr>
+"nmap <leader>2 :action GotoHarpoon2<cr>
+"nmap <leader>3 :action GotoHarpoon3<cr>
+"nmap <leader>4 :action GotoHarpoon4<cr>
+"nmap <leader>5 :action GotoHarpoon5<cr>
+
+"nmap <leader>b :action ShowHarpoon<cr>
+"nmap <leader>m :action AddToHarpoon<cr>
+
+" directory mapping"
+nmap <leader>ds <Action>(SelectInProjectView)
+
+
+" LSP ------------"
+nmap gd <Action>(GotoDeclaration)
+nmap gD <Action>(QuickJavaDoc)
+nmap gi <Action>(GotoImplementation)
+
+" undersøg keymaps for:
+" Og de andre..
+" https://rishabhrd.github.io/jekyll/update/2020/09/19/nvim_lsp_config.html
+" https://youtrack.jetbrains.com/issue/VIM-2264
+
+"lines to scroll using CTRL+d and CTRL+u"
+set scr=20
+
+set incsearch
+set nohls
+set number
+set tabstop=4 softtabstop=4
+set shiftwidth=4
+set expandtab
+set autoindent
+set ignorecase
+set smartindent
+set relativenumber
+set noerrorbells
+set nowrap
+set showmode
+set scrolloff=8
+set mouse=
+syntax on
+
+"       normalmode mappings
+nnoremap J mzJ`z
+" nnoremap <C-d> <C-d>zz
+" nnoremap <C-u> <C-u>zz
+nnoremap N Nzzzv
+nnoremap n nzzzv
+nnoremap <silent> <leader>ca :%y+<CR>:%y<CR>
+"       visualmode mappings
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
+vnoremap <leader>p "_dP
+
+nnoremap <leader>y "*y
+vnoremap <leader>y "*y
+nnoremap <leader>Y "*Y
