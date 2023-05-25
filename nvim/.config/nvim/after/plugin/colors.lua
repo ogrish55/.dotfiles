@@ -2,8 +2,8 @@ require('onedark').setup {
     style = 'deep'
 }
 
-function ColorMyPencils(color) 
-  color = color or "onedark"
+function ColorMyPencils(color)
+  color = color or "github_dark"
   vim.cmd.colorscheme(color)
 end
 

@@ -45,6 +45,7 @@ return require('packer').startup(function(use)
   -- colorschemes
   use { 'rose-pine/neovim', as = 'rose-pine' }
   use { 'navarasu/onedark.nvim' }
+  use { 'projekt0n/github-nvim-theme' }
 
   -- Telescope
   use { 'nvim-telescope/telescope.nvim', tag = '0.1.0', requires = { {'nvim-lua/plenary.nvim'} }}
@@ -66,21 +67,21 @@ return require('packer').startup(function(use)
   -- Not sure what smart-history is.. Need to look into it.
   use('nvim-telescope/telescope-smart-history.nvim')
 
+
   -- LSP
   use {
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v2.x',
     requires = {
       -- LSP Support
-      {'neovim/nvim-lspconfig'},             -- Required
-      {                                      -- Optional
-      'williamboman/mason.nvim',
+    {'neovim/nvim-lspconfig'},             -- Required
+    {'williamboman/mason.nvim',
       run = function()
         pcall(vim.cmd, 'MasonUpdate')
       end,
     },
     {'williamboman/mason-lspconfig.nvim'}, -- Optional
-
+    --
     -- Autocompletion
     {'hrsh7th/nvim-cmp'},     -- Required
     {'hrsh7th/cmp-nvim-lsp'}, -- Required
