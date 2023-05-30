@@ -24,6 +24,16 @@ return require('packer').startup(function(use)
   -- undo tree (open using <leader> u)
   use 'mbbill/undotree'
 
+  use 'jiangmiao/auto-pairs'
+
+  use {
+    "folke/which-key.nvim",
+    config = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 100
+    end
+  }
+
   -- Impatient for caching
   use 'lewis6991/impatient.nvim'
 
