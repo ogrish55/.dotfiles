@@ -20,7 +20,6 @@ nmap <leader>a <Action>(Annotate)
 nmap <leader>e <Action>(GotoNextError)
 nmap <leader>r <Action>(GotoPreviousError)
 nmap <leader>x <Action>(FileStructurePopup)
-nmap <leader>o <Action>(FileStructurePopup)
 
 " <leader>t in normal and visualmode for surround with function"
 vmap <leader>t <Action>(SurroundWith)
@@ -44,6 +43,7 @@ nmap <C-i> <Action>(Forward)
 
 " directory mapping"
 nmap <leader>ds <Action>(SelectInProjectView)
+nmap <leader>fd <Action>(SelectInProjectView)
 
 
 " LSP ------------"

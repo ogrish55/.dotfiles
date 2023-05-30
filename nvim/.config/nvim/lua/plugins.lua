@@ -24,6 +24,7 @@ return require('packer').startup(function(use)
   -- undo tree (open using <leader> u)
   use 'mbbill/undotree'
 
+  -- auto pairs for ({[]}) ..etc
   use 'jiangmiao/auto-pairs'
 
   use {
@@ -37,6 +38,8 @@ return require('packer').startup(function(use)
   -- Impatient for caching
   use 'lewis6991/impatient.nvim'
 
+  -- comment plugin. normal mode: gcc
+  -- visual mode: gc
   use {
     'numToStr/Comment.nvim',
     config = function()
