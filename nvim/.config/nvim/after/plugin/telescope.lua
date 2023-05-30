@@ -59,7 +59,7 @@ require('telescope').setup{
 
     -- Default configuration for telescope goes here:
     -- config_key = value,
-    file_ignore_patterns = { "update", "dev", "node_modules", "yarn.lock", "var", "pub" },
+    file_ignore_patterns = { "update", "dev", "node_modules", "yarn.lock", "var", "pub", ".git"},
     vimgrep_arguments = {
       "rg",
       "--color=never",
@@ -67,7 +67,8 @@ require('telescope').setup{
       "--with-filename",
       "--line-number",
       "--column",
-      "--smart-case"
+      "--smart-case",
+      "--hidden"
     },
     mappings = {
       i = {
