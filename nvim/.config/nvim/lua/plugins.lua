@@ -24,6 +24,9 @@ return require('packer').startup(function(use)
   -- undo tree (open using <leader> u)
   use 'mbbill/undotree'
 
+  -- nvim-tree
+  use 'nvim-tree/nvim-tree.lua'
+
   -- auto pairs for ({[]}) ..etc
   use 'jiangmiao/auto-pairs'
 

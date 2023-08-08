@@ -20,6 +20,7 @@ vim.api.nvim_set_keymap("n", "<leader>ee", "<Cmd>lua require('telescope').extens
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 
 vim.keymap.set("n", "<leader>fd", vim.cmd.Ex, { desc = 'file explorer'})
+vim.keymap.set("n", "<leader>fd", ":lua require('nvim-tree.api').tree.toggle()<CR>", { desc = 'file explorer'})
 
 
 vim.keymap.set("n", "<leader>Y", "\"*Y", { desc = 'yank to clipboard'})
