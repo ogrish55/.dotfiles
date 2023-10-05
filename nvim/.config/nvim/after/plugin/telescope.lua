@@ -14,18 +14,11 @@ end
 
                                       ------------------------------FILES--------------------------
 
-vim.api.nvim_set_keymap('n', '<leader>pf', '<cmd>lua project_files()<CR>', { noremap=true, desc = 'project files' })
+vim.api.nvim_set_keymap('n', '<leader>of', '<cmd>lua project_files()<CR>', { noremap=true, desc = 'project files' })
 
 -- Search across all files (including vendor) -- Equilevant to phpstorm <Shift> <Shift> include non-project items
-vim.keymap.set('n', '<leader>pa', function() builtin.find_files({ prompt_title = 'All files', no_ignore = true }) end, { desc = 'All files' })
+vim.keymap.set('n', '<leader>oa', function() builtin.find_files({ prompt_title = 'All files', no_ignore = true }) end, { desc = 'All files' })
 vim.keymap.set('n', '<leader>b', builtin.buffers, { desc = 'search across buffers' })
-
-
-                                      ------------------------------GREPPING--------------------------
-
-
---- Testing telescope extension menufacture
-vim.keymap.set('n', '<leader>sg', require('telescope').extensions.menufacture.live_grep)
 
 -- Live grep across project files -- Equilevant to phpstorm <Shift> <Cmd> <f> but faster, cause only project files.
 vim.keymap.set('n', '<leader>ff', builtin.live_grep, { desc = 'grep project files' })
@@ -37,12 +30,12 @@ vim.keymap.set('n', '<leader>fr', builtin.resume, { desc = 'resume previous sear
 vim.keymap.set('n', '<leader>fa', function()
   builtin.live_grep({
     only_sort_text = true,
-    prompt_title = 'Search Everywhere',
+    prompt_title = 'Search everywhere',
     additional_args = function(opts)
       return {"-F", "--no-ignore"}
     end
   })
-end, { desc = 'grep everywhere' })
+end, { desc = 'Search everywhere' })
 
                                       ------------------------------SETUP--------------------------
 

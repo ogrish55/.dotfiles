@@ -23,7 +23,6 @@ yabai -m config --space 4 window_gap 0
 #yabai -m config right_padding              50
 
 yabai -m config mouse_follows_focus         off
-yabai -m config focus_follows_mouse         on
 yabai -m config window_topmost              off
 yabai -m config window_opacity              off
 
