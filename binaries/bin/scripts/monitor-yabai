@@ -15,15 +15,24 @@ if [ $((resolution_width)) -gt 2560 ]; then
   yabai -m config --space 2 right_padding 200
   yabai -m config --space 2 left_padding 200
 
+#Space 3 (Phpstorm)
+  yabai -m config --space 3 layout bsp
+  yabai -m config --space 3 left_padding 800
+  yabai -m config --space 3 right_padding 800
+
 #Space 4 (Socials)
   yabai -m config --space 4 right_padding 250
   yabai -m config --space 4 left_padding 250
+
+  
 else
   echo "You be on da SMALL monitor mon"
   yabai -m config left_padding 0
   yabai -m config right_padding 0
-  yabai -m config --space 4 right_padding 0
-  yabai -m config --space 4 left_padding 0
   yabai -m config --space 2 right_padding 0
   yabai -m config --space 2 left_padding 0
+  yabai -m config --space 3 right_padding 0
+  yabai -m config --space 3 left_padding 0
+  yabai -m config --space 4 right_padding 0
+  yabai -m config --space 4 left_padding 0
 fi
