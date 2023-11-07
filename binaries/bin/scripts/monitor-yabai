@@ -17,8 +17,9 @@ if [ $((resolution_width)) -gt 2560 ]; then
 
 #Space 3 (Phpstorm)
   yabai -m config --space 3 layout bsp
-  yabai -m config --space 3 left_padding 800
-  yabai -m config --space 3 right_padding 800
+  yabai -m config --space 3 left_padding 500
+  yabai -m config --space 3 right_padding 500
+  yabai -m config --space 3 layout float
 
 #Space 4 (Socials)
   yabai -m config --space 4 right_padding 250
