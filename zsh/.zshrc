@@ -14,6 +14,7 @@ export PATH=/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH
 export PATH=/opt/homebrew/opt/findutils/libexec/gnubin:$PATH
 export PATH=/opt/homebrew/bin:$PATH
 export PATH="$PATH:$HOME/.composer/vendor/bin"
+export LESS="-IRN --incsearch"
 
 #kubectl binary plugin
 export USE_GKE_GCLOUD_AUTH_PLUGIN=true
