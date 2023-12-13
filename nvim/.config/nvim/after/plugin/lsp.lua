@@ -26,11 +26,6 @@ require'lspconfig'.lua_ls.setup {
 
 lsp.preset('recommended')
 
-lsp.ensure_installed({
-  'intelephense',
-  'phpactor'
-})
-
 local cmp = require('cmp')
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
 local cmp_mappings = lsp.defaults.cmp_mappings({
