@@ -115,6 +115,7 @@ alias vi='nvim'
 alias t='tmux'
 alias of='vim $(zfm select --files --multi)'
 alias wcm='wexocommit'
+alias wgb='git branch | fzf | xargs git checkout'
 
 
 setopt HIST_IGNORE_ALL_DUPS

@@ -16,7 +16,7 @@ let g:highlightedyank_highlight_duration = 200
 let g:highlightedyank_highlight_in_visual = 0
 
 " Mappings ----------
-nmap <leader>a <Action>(Annotate)
+nmap <leader>w <Action>(Annotate)
 nmap <leader>e <Action>(GotoNextError)
 nmap <leader>r <Action>(GotoPreviousError)
 nmap <leader>x <Action>(FileStructurePopup)
@@ -33,14 +33,15 @@ nmap <C-o> <Action>(Back)
 nmap <C-i> <Action>(Forward)
 
 " ------------------------- Harpoon -------------------------
-"nmap <leader>1 :action GotoHarpoon1<cr>
-"nmap <leader>2 :action GotoHarpoon2<cr>
-"nmap <leader>3 :action GotoHarpoon3<cr>
-"nmap <leader>4 :action GotoHarpoon4<cr>
-"nmap <leader>5 :action GotoHarpoon5<cr>
+nmap <C-h> <Action>(GotoHarpoon1)
+nmap <C-j> <Action>(GotoHarpoon2)
+nmap <C-k> <Action>(GotoHarpoon3)
+nmap <C-l> <Action>(GotoHarpoon4)
+nmap <C-æ> <Action>(GotoHarpoon5)
 
-"nmap <leader>b :action ShowHarpoon<cr>
-"nmap <leader>m :action AddToHarpoon<cr>
+"
+nmap <leader>s <Action>(ShowHarpoon)
+nmap <leader>a <Action>(AddToHarpoon)
 
 " directory mapping"
 nmap <leader>ds <Action>(SelectInProjectView)
