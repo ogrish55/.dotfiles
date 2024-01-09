@@ -113,7 +113,7 @@ alias vimrc='vim ~/.vimrc'
 alias vim='nvim'
 alias vi='nvim'
 alias t='tmux'
-alias of='vim $(zfm select --files --multi)'
+alias odf='vim ~/.dotfiles'
 alias wcm='wexocommit'
 alias wgb='git branch | fzf | xargs git checkout'
 
