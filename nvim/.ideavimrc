@@ -17,8 +17,8 @@ let g:highlightedyank_highlight_in_visual = 0
 
 " Mappings ----------
 nmap <leader>w <Action>(Annotate)
-nmap <leader>e <Action>(GotoNextError)
-nmap <leader>r <Action>(GotoPreviousError)
+nmap <leader>r <Action>(GotoNextError)
+nmap <leader>e <Action>(GotoPreviousError)
 nmap <leader>x <Action>(FileStructurePopup)
 nmap <leader>cf <Action>(CopyContentRootPath)
 

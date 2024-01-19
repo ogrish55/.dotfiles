@@ -1,3 +1,5 @@
+# uncomment zmodload zsh/zprof and zprof at the bottom to check load times.
+#zmodload zsh/zprof
 # TO RELOAD THIS FILE:
 # omz reload
 #
@@ -73,13 +75,24 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+###################---NVM---#############################
+export NVM_DIR="$HOME/.nvm"
+export NVM_COMPLETION=true
+export NVM_LAZY_LOAD=true
+
+# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+###################///NVM\\\#############################
+
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 
-plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
+###################---PLUGINS---#############################
+plugins=(zsh-nvm git zsh-syntax-highlighting zsh-autosuggestions)
+###################///PLUGINS\\\#############################
 
 source $ZSH/oh-my-zsh.sh
 
@@ -128,9 +141,6 @@ autoload -U compinit && compinit -u
 #export PATH="/opt/homebrew/opt/php@8.0/bin:$PATH"
 export PATH="/opt/homebrew/opt/php@7.4/sbin:$PATH"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
@@ -159,3 +169,4 @@ bindkey '^P' up-line-or-beginning-search
 bindkey '^N' down-line-or-beginning-search
 
 source ~/.zsh_profile
+# zprof
