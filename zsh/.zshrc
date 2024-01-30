@@ -122,7 +122,6 @@ alias vpnup="wg-quick up wg0"
 alias vpndown="wg-quick down wg0"
 alias gs="git status"
 alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
-alias vimrc='vim ~/.vimrc' 
 alias vim='nvim'
 alias vi='nvim'
 alias t='tmux'

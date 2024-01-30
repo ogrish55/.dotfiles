@@ -80,8 +80,6 @@ syntax on
 
 "       normalmode mappings
 nnoremap J mzJ`z
-" nnoremap <C-d> <C-d>zz
-" nnoremap <C-u> <C-u>zz
 nnoremap N Nzzzv
 nnoremap n nzzzv
 nnoremap <silent> <leader>ca :%y+<CR>:%y<CR>
@@ -94,4 +92,3 @@ vnoremap p "_dP
 nnoremap <leader>y "*y
 vnoremap <leader>y "*y
 nnoremap <leader>Y "*Y
-nnoremap <C-a> <C-w>
