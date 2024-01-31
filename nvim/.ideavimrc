@@ -33,6 +33,12 @@ nmap <C-o> <Action>(Back)
 nmap <C-i> <Action>(Forward)
 
 " ------------------------- Harpoon -------------------------
+nmap <leader><C-h> <Action>(SetHarpoon1)
+nmap <leader><C-j> <Action>(SetHarpoon2)
+nmap <leader><C-k> <Action>(SetHarpoon3)
+nmap <leader><C-l> <Action>(SetHarpoon4)
+nmap <leader><C-æ> <Action>(SetHarpoon5)
+
 nmap <C-h> <Action>(GotoHarpoon1)
 nmap <C-j> <Action>(GotoHarpoon2)
 nmap <C-k> <Action>(GotoHarpoon3)
