@@ -164,7 +164,6 @@ if [ -f '/Users/wexokk/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/we
 
 
 # keybind
-bindkey -s '^e' 'nvim $(fzf)\n'
 bindkey '^ ' autosuggest-execute
 bindkey '^P' up-line-or-beginning-search
 bindkey '^N' down-line-or-beginning-search
