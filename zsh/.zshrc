@@ -94,6 +94,8 @@ export NVM_LAZY_LOAD=true
 plugins=(zsh-nvm git zsh-syntax-highlighting zsh-autosuggestions)
 ###################///PLUGINS\\\#############################
 
+## don't escape urls when pasted in the terminal
+DISABLE_MAGIC_FUNCTIONS=true
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
