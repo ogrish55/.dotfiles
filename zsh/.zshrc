@@ -92,6 +92,7 @@ export NVM_LAZY_LOAD=true
 
 ###################---PLUGINS---#############################
 plugins=(zsh-nvm git zsh-syntax-highlighting zsh-autosuggestions)
+#plugins+=(zsh-vi-mode)
 ###################///PLUGINS\\\#############################
 
 ## don't escape urls when pasted in the terminal
