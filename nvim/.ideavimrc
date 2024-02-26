@@ -38,11 +38,10 @@ nmap <leader><C-k> <Action>(SetHarpoon2)
 nmap <leader><C-l> <Action>(SetHarpoon3)
 nmap <leader><C-æ> <Action>(SetHarpoon4)
 
-nmap <C-h> <Action>(GotoHarpoon1)
-nmap <C-j> <Action>(GotoHarpoon2)
-nmap <C-k> <Action>(GotoHarpoon3)
-nmap <C-l> <Action>(GotoHarpoon4)
-nmap <C-æ> <Action>(GotoHarpoon5)
+nmap <C-j> <Action>(GotoHarpoon1)
+nmap <C-k> <Action>(GotoHarpoon2)
+nmap <C-l> <Action>(GotoHarpoon3)
+nmap <C-æ> <Action>(GotoHarpoon4)
 
 "
 nmap <leader>s <Action>(ShowHarpoon)
