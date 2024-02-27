@@ -26,7 +26,6 @@ nmap <leader>cf <Action>(CopyContentRootPath)
 vmap <leader>t <Action>(SurroundWith)
 nmap <leader>t <Action>(SurroundWith)
 
-nmap <leader>s /
 nmap <leader>m <Action>(ToggleBookmark)
 nmap <leader>b <Action>(ShowBookmarks)
 nmap <C-o> <Action>(Back)
@@ -55,7 +54,7 @@ nmap <leader>fd <Action>(SelectInProjectView)
 " LSP ------------"
 nmap gd <Action>(GotoDeclaration)
 nmap gD <Action>(QuickJavaDoc)
-nmap gi <Action>(GotoImplementation)
+nmap gI <Action>(GotoImplementation)
 
 " undersøg keymaps for:
 " Og de andre..
@@ -93,6 +92,8 @@ vnoremap K :m '<-2<CR>gv=gv
 vnoremap p "_dP
 
 
-nnoremap <leader>y "*y
-vnoremap <leader>y "*y
-nnoremap <leader>Y "*Y
+" this makes it so that you don't have to use leader + y to yank to clipboard.
+set clipboard+=unnamedplus
+" nnoremap <leader>y "*y
+" vnoremap <leader>y "*y
+" nnoremap <leader>Y "*Y
