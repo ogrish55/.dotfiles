@@ -46,9 +46,12 @@ nmap <leader>ds <Action>(SelectInProjectView)
 nmap <leader>fd <Action>(SelectInProjectView)
 
 
+" debugger
+nmap <leader>dt <Action>(ToggleLineBreakpoint)
+
 " LSP ------------"
 nmap gd <Action>(GotoDeclaration)
-nmap gD <Action>(QuickJavaDoc)
+nmap gD <Action>(QuickImplementations)
 nmap gI <Action>(GotoImplementation)
 
 " undersøg keymaps for:
