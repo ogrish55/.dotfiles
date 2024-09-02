@@ -1,11 +1,16 @@
 #!/usr/bin/env bash
 
+
+
+# need to rewrite this to remove the Users/wexokk/Projects from the fzf and append after select.
+
 if [[ $# -eq 1 ]]; then
   selected=$1
 else
-  selected=$(find ~/Projects ~/fun -mindepth 1 -maxdepth 1 -type d | \
+  selected=$(find ~/Projects -mindepth 1 -maxdepth 1 -type d | \
     echo -e "$(cat -)\n/Users/wexokk" | \
-    echo -e "$(cat -)\n/Users/wexokk/.dotfiles" \
+    echo -e "$(cat -)\n/Users/wexokk/.dotfiles" | \
+    echo -e "$(cat -)\n/Users/wexokk/Projects/daarbakgroup/backend/backend"  \
     | fzf)
 fi
 

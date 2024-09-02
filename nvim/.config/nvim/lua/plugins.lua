@@ -66,14 +66,6 @@ return require('packer').startup(function(use)
   -- Telescope
   use { 'nvim-telescope/telescope.nvim', tag = '0.1.0', requires = { {'nvim-lua/plenary.nvim'} }}
 
-  -- Plugin for "frequently used files" <leader>ee
-  use {
-    "nvim-telescope/telescope-frecency.nvim",
-    config = function() require"telescope".load_extension("frecency") end,
-    requires = {"kkharji/sqlite.lua"}
-  }
-
-
   -- Use fzf-native to improve telescope performance
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
