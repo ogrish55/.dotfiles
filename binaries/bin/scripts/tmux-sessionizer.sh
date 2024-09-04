@@ -1,18 +1,38 @@
 #!/usr/bin/env bash
 
-
-
-# need to rewrite this to remove the Users/wexokk/Projects from the fzf and append after select.
+declare -A folders
 
 if [[ $# -eq 1 ]]; then
   selected=$1
 else
-  selected=$(find ~/Projects -mindepth 1 -maxdepth 1 -type d | \
+  result=$(find ~/Projects -mindepth 1 -maxdepth 1 -type d -not -path "/Users/wexokk/Projects/daarbakgroup" | \
     echo -e "$(cat -)\n/Users/wexokk" | \
     echo -e "$(cat -)\n/Users/wexokk/.dotfiles" | \
-    echo -e "$(cat -)\n/Users/wexokk/Projects/daarbakgroup/backend/backend"  \
-    | fzf)
+    echo -e "$(cat -)\n/Users/wexokk/Projects/daarbakgroup/backend/daarbak-orders" | \
+    echo -e "$(cat -)\n/Users/wexokk/Projects/daarbakgroup/backend/modules" | \
+    echo -e "$(cat -)\n/Users/wexokk/Projects/daarbakgroup/backend/modules-composer" | \
+    echo -e "$(cat -)\n/Users/wexokk/Projects/daarbakgroup/backend/patches" | \
+    echo -e "$(cat -)\n/Users/wexokk/Projects/daarbakgroup/backend/roso-backend" | \
+    echo -e "$(cat -)\n/Users/wexokk/Projects/daarbakgroup/backend/scanoffice-backend" | \
+    echo -e "$(cat -)\n/Users/wexokk/Projects/daarbakgroup/frontend/roso-frontend" | \
+    echo -e "$(cat -)\n/Users/wexokk/Projects/daarbakgroup/middleware" | \
+    echo -e "$(cat -)\n/Users/wexokk/Projects/daarbakgroup/strapi" \
+    )
 fi
+
+while IFS= read -r line; do
+  key=$(basename "$line")
+  folders["$key"]="$line"
+done <<< $result
+
+keys=$(printf "%s\n" "${!folders[@]}")
+selectedFolder=$(echo "$keys" | fzf)
+
+if [[ -z $selectedFolder ]]; then
+  exit 0
+fi
+
+selected=${folders[$selectedFolder]}
 
 if [[ -z $selected ]]; then
   exit 0
@@ -24,8 +44,7 @@ tmux_running=$(pgrep tmux)
 if [[ "$selected_name" == "wexokk" ]]; then
   selected_name="HOME"
 elif [[ "$selected_name" == "_dotfiles" ]]; then
-  selected-name="DOTFILES"
-  echo "$selected_name"
+  selected_name="DOTFILES"
 fi
 
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
