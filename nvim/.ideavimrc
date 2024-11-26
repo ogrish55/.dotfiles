@@ -41,6 +41,13 @@ nmap <C-æ> <Action>(GotoHarpoon4)
 nmap <leader>s <Action>(ShowHarpoon)
 nmap <leader>a <Action>(AddToHarpoon)
 
+" ------------------------- Debugging -------------------------
+nmap <leader>h <Action>(ForceRunToCursor)
+nmap <leader>n <Action>(StepOver)
+nmap <leader>i <Action>(StepInto)
+nmap <leader>o <Action>(StepOut)
+
+
 " directory mapping"
 nmap <leader>ds <Action>(SelectInProjectView)
 nmap <leader>fd <Action>(SelectInProjectView)

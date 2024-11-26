@@ -15,6 +15,7 @@ fi
 export PATH=/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH
 export PATH=/opt/homebrew/opt/findutils/libexec/gnubin:$PATH
 export PATH=/opt/homebrew/bin:$PATH
+export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 export PATH="$PATH:$HOME/.composer/vendor/bin"
 export LESS="-IRN --incsearch"
 
@@ -131,6 +132,8 @@ alias t='tmux'
 alias odf='vim ~/.dotfiles'
 alias wcm='wexocommit'
 alias wgb='git branch | fzf | xargs git checkout'
+alias wso='wexo stop'
+alias wsa='wexo start'
 
 
 setopt HIST_IGNORE_ALL_DUPS
