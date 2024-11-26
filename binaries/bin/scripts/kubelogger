@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+namespace=$(kubectl get namespace 2> /dev/null | tail -n+2 | fzf | awk '{print $1}' )
+
+if [ -z "$namespace" ]; then
+  echo "no namespace selected"
+  exit 0
+fi
+
+pod=$(kubectl get pods -n $namespace --show-labels | grep "webapp" | awk '{print $1}')
+
+if [ -z "$pod" ]; then
+  echo "no pod selected"
+  exit 0
+fi
+
+for _POD in $pod; do
+  {
+    kubectl exec -n "$namespace" "$_POD" -it -- tail -f /var/www/html/var/log/system.log 2>&1 | sed "s/^/$_POD: /"
+  } &
+done
+
+wait
+

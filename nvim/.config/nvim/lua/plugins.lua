@@ -30,14 +30,6 @@ return require('packer').startup(function(use)
   -- auto pairs for ({[]}) ..etc
   use 'jiangmiao/auto-pairs'
 
-  use {
-    "folke/which-key.nvim",
-    config = function()
-      vim.o.timeout = true
-      vim.o.timeoutlen = 300
-    end
-  }
-
   -- Impatient for caching
   use 'lewis6991/impatient.nvim'
 
