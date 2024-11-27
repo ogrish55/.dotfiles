@@ -21,9 +21,6 @@ return require('packer').startup(function(use)
 
   use { "lewis6991/gitsigns.nvim", }
 
-  -- undo tree (open using <leader> u)
-  use 'mbbill/undotree'
-
   -- nvim-tree
   use 'nvim-tree/nvim-tree.lua'
 
@@ -42,14 +39,6 @@ return require('packer').startup(function(use)
     end
   }
 
-  -- throws an error when used at the moment - try again later
-  -- https://github.com/molecule-man/telescope-menufacture
-
-  use {
-    "molecule-man/telescope-menufacture",
-    config = function() require"telescope".load_extension("menufacture") end
-  }
-
   -- colorschemes
   use { 'rose-pine/neovim', as = 'rose-pine' }
   use { 'navarasu/onedark.nvim' }
@@ -62,11 +51,9 @@ return require('packer').startup(function(use)
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
   -- Treesitter for pretty colorz
-  use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
-
-  -- Not sure what smart-history is.. Need to look into it.
-  use('nvim-telescope/telescope-smart-history.nvim')
-
+  use { 'nvim-treesitter/nvim-treesitter',
+  commit = '668de0951a36ef17016074f1120b6aacbe6c4515',
+  run = ':TSUpdate' }
 
   -- LSP
   use {
