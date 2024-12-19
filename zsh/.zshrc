@@ -18,7 +18,7 @@ export PATH=/opt/homebrew/bin:$PATH
 export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 export PATH="$PATH:$HOME/.composer/vendor/bin"
 export LESS="-IRN --incsearch"
-export RIPGREP_CONFIG_PATH="$HOME/.dotfiles/.ripgreprc"
+export RIPGREP_CONFIG_PATH="$HOME/.dotfiles/ripgrep/.ripgreprc"
 
 #kubectl binary plugin
 export USE_GKE_GCLOUD_AUTH_PLUGIN=true

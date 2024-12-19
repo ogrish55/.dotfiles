@@ -1,0 +1,6 @@
+--smart-case
+--hidden
+--max-columns=150
+--max-columns-preview
+--fixed-strings
+--glob=!.git/*
