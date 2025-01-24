@@ -30,6 +30,14 @@ require("lazy").setup({
 	-- Then, because we use the `config` key, the configuration only runs
 	-- after the plugin has been loaded:
 	--  config = function() ... end
+	{
+		"ThePrimeagen/harpoon",
+		branch = "harpoon2",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		config = function()
+			require("harpoon").setup()
+		end,
+	},
 
 	{ -- Useful plugin to show you pending keybinds.
 		"folke/which-key.nvim",
@@ -88,9 +96,7 @@ require("lazy").setup({
 		"ibhagwan/fzf-lua",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		opts = function(_, opts)
-			local actions = require("fzf-lua.actions")
-			-- vim.print(actions)
-			print("howdy")
+			-- local actions = require("fzf-lua.actions")
 			return {
 				defaults = {
 					fzf_colors = true,
@@ -112,11 +118,12 @@ require("lazy").setup({
 						true,
 						["<Esc>"] = "hide",
 					},
-					-- fzf = {
-					-- 	true,
-					-- 	["ctrl-d"] = "half-page-down",
-					-- 	["ctrl-u"] = "half-page-up",
-					-- },
+					fzf = {
+						true,
+						["ctrl-q"] = "select-all+accept",
+						-- ["ctrl-d"] = "half-page-down",
+						-- ["ctrl-u"] = "half-page-up",
+					},
 				},
 				fzf_opts = {
 					["--margin"] = "0,0",
@@ -127,6 +134,9 @@ require("lazy").setup({
 					formatter = { "path.filename_first", 2 }, -- enables pasting whole file paths
 					cwd_only = true,
 					stat_file = true,
+					fzf_opts = {
+						["--exact"] = true,
+					},
 				},
 				files = {
 					formatter = { "path.filename_first", 2 }, -- enables pasting whole file paths
@@ -137,9 +147,9 @@ require("lazy").setup({
 						["--history"] = vim.fn.stdpath("data") .. "/fzf-lua-files-history",
 						["--exact"] = true,
 					},
-					actions = {
-						["ctrl-q"] = actions.file_sel_to_qf,
-					},
+					-- actions = {
+					-- 	["ctrl-q"] = actions.file_sel_to_qf,
+					-- },
 				},
 				buffers = {
 					sort_lastused = true,
@@ -154,6 +164,7 @@ require("lazy").setup({
 				grep = {
 					-- debug = true,
 					fzf_opts = {
+						["--exact"] = true,
 						["--history"] = vim.fn.stdpath("data") .. "/fzf-lua-grep-history",
 					},
 					-- rg_opts = "-uu --column --line-number --no-heading --color=always --smart-case --max-columns=4096 -e -F",
@@ -764,6 +775,7 @@ require("lazy").setup({
 			-- - sd'   - [S]urround [D]elete [']quotes
 			-- - sr)'  - [S]urround [R]eplace [)] [']
 			require("mini.surround").setup()
+			require("mini.pairs").setup()
 
 			-- Simple and easy statusline.
 			--  You could remove this setup call if you don't like it,

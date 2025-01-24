@@ -11,6 +11,11 @@ opt.number = true
 --  Experiment for yourself to see if you like it!
 opt.relativenumber = true
 
+--lines to scroll using CTRL+d and CTRL+u
+opt.scr = 20
+
+opt.scrolloff = 8
+
 -- Enable mouse mode, can be useful for resizing splits for example!
 opt.mouse = "a"
 
