@@ -11,6 +11,8 @@ opt.number = true
 --  Experiment for yourself to see if you like it!
 opt.relativenumber = true
 
+opt.winbar = "%=%f%="
+
 --lines to scroll using CTRL+d and CTRL+u
 opt.scr = 20
 

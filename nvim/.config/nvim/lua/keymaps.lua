@@ -34,7 +34,7 @@ vim.keymap.set("n", "<leader>q", function()
 	require("fzf-lua").files()
 end)
 
-vim.keymap.set("n", "<leader>of", function()
+vim.keymap.set("n", "<leader>o", function()
 	require("fzf-lua").oldfiles()
 end)
 
