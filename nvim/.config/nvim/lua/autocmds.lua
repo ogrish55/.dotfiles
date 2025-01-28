@@ -1,0 +1,25 @@
+local api = vim.api
+
+-- api.nvim_create_augroup("MyAutoGroup", { clear = true })
+--
+-- api.nvim_create_autocmd("BufWinEnter", {
+-- 	group = "MyAutoGroup",
+-- 	pattern = "*",
+-- 	callback = function(ev)
+-- 		local filepath = "asd"
+-- 		local on_exit = function(obj)
+-- 			vim.print(vim.inspect(obj))
+-- 			-- print(obj.code)
+-- 			-- print(obj.signal)
+-- 			-- print(obj.stdout)
+-- 			-- print(obj.stderr)
+-- 		end
+--
+-- 		vim.print()
+-- 		local output = vim.system({ "git", "check-ignore", filepath }, { text = true }, on_exit)
+-- 		-- local exit_code = vim.v.shell_error
+-- 		-- vim.print(output)
+-- 		-- vim.print(exit_code)
+-- 		-- vim.print(ev)
+-- 	end,
+-- })

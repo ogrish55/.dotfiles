@@ -1,13 +1,14 @@
 local builtin = require("telescope.builtin")
 local utils = require("utils")
 local themes = require("telescope.themes")
+
 -- CUSTOM UTILS KEYMAPS
 -- copying current file path like in phpstorm
 vim.keymap.set("n", "<leader>cf", utils.copyCurrentFilePath)
 
 --
 -- Diagnostic keymaps
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+-- vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 --
 -- Quickfix keymaps
 vim.keymap.set("n", "<C-n>", "<cmd>cnext<CR>")
@@ -69,12 +70,14 @@ vim.keymap.set("n", "<C-æ>", function()
 	harpoon:list():select(5)
 end)
 
---  See `:help vim.keymap.set()`
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("n", "n", "nzzzv")
+
+vim.keymap.set("n", "<C-o>", "<C-o>zz")
+vim.keymap.set("n", "<C-i>", "<C-i>zz")
 
 -- TELESCOPE keymaps
 -- See `:help telescope.builtin`
