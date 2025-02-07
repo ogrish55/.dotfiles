@@ -6,6 +6,11 @@ local themes = require("telescope.themes")
 -- copying current file path like in phpstorm
 vim.keymap.set("n", "<leader>cf", utils.copyCurrentFilePath)
 
+-- GIT
+vim.keymap.set("n", "<leader>gb", function()
+	require("gitsigns").blame()
+end, { desc = "[G]it [B]lame" })
+
 --
 -- Diagnostic keymaps
 -- vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
@@ -76,8 +81,8 @@ vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("n", "n", "nzzzv")
 
-vim.keymap.set("n", "<C-o>", "<C-o>zz")
-vim.keymap.set("n", "<C-i>", "<C-i>zz")
+-- vim.keymap.set("n", "<C-o>", "<C-o>zz")
+-- vim.keymap.set("n", "<C-i>", "<C-i>zz")
 
 -- TELESCOPE keymaps
 -- See `:help telescope.builtin`
