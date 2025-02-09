@@ -12,7 +12,7 @@ return {
 					preview = {
 						vertical = "down:65%",
 						hidden = false,
-						layout = "vertical",
+						layout = "horizontal",
 						delay = 5,
 						winopts = { number = false },
 					},
@@ -52,22 +52,17 @@ return {
 					["--history"] = vim.fn.stdpath("data") .. "/fzf-lua-files-history",
 					["--exact"] = true,
 				},
-				-- actions = {
-				-- 	["ctrl-q"] = actions.file_sel_to_qf,
-				-- },
 			},
 			buffers = {
 				sort_lastused = true,
 				cwd_only = true,
-				formatter = "path.filename_first",
+				formatter = { "path.filename_first", 2 },
 				fzf_opts = {
 					["--exact"] = true,
-					-- ["--with-nth"] = "3", -- Only show filename
 					["--with-nth"] = "3..", -- Show filename and path
 				},
 			},
 			grep = {
-				-- debug = true,
 				fzf_opts = {
 					["--exact"] = true,
 					["--history"] = vim.fn.stdpath("data") .. "/fzf-lua-grep-history",
