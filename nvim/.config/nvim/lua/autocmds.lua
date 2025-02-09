@@ -1,25 +1,23 @@
 local api = vim.api
 
--- api.nvim_create_augroup("MyAutoGroup", { clear = true })
---
--- api.nvim_create_autocmd("BufWinEnter", {
--- 	group = "MyAutoGroup",
--- 	pattern = "*",
--- 	callback = function(ev)
--- 		local filepath = "asd"
--- 		local on_exit = function(obj)
--- 			vim.print(vim.inspect(obj))
--- 			-- print(obj.code)
--- 			-- print(obj.signal)
--- 			-- print(obj.stdout)
--- 			-- print(obj.stderr)
--- 		end
---
--- 		vim.print()
--- 		local output = vim.system({ "git", "check-ignore", filepath }, { text = true }, on_exit)
--- 		-- local exit_code = vim.v.shell_error
--- 		-- vim.print(output)
--- 		-- vim.print(exit_code)
--- 		-- vim.print(ev)
--- 	end,
--- })
+api.nvim_create_autocmd({ "BufWinEnter" }, {
+	group = api.nvim_create_augroup("personal-winbar-highlight", { clear = true }),
+	pattern = "*",
+	callback = function()
+		local filepath = api.nvim_buf_get_name(0)
+
+		if filepath ~= nil and filepath ~= "" then
+			vim.system({ "git", "check-ignore", filepath }, { text = true }, function(obj)
+				if obj.code == 0 then
+					vim.schedule(function()
+						api.nvim_set_hl(0, "WinBar", { fg = "#e3e3e3", bg = "#6a6a6a" })
+					end)
+				else
+					vim.schedule(function()
+						api.nvim_set_hl(0, "WinBar", { fg = "#ffffff", bg = "#16161e" })
+					end)
+				end
+			end)
+		end
+	end,
+})

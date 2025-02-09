@@ -2,7 +2,6 @@ return {
 	"ibhagwan/fzf-lua",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	opts = function(_, opts)
-		-- local actions = require("fzf-lua.actions")
 		return {
 			defaults = {
 				fzf_colors = true,
