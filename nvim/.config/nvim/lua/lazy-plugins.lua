@@ -2,7 +2,9 @@ require("lazy").setup({
 	spec = {
 		{ import = "plugins" },
 	},
-
+	change_detection = {
+		notify = false,
+	},
 	-- require 'kickstart.plugins.debug',
 	-- require 'kickstart.plugins.indent_line',
 	-- require 'kickstart.plugins.lint',

@@ -26,8 +26,6 @@ return {
 				fzf = {
 					true,
 					["ctrl-q"] = "select-all+accept",
-					-- ["ctrl-d"] = "half-page-down",
-					-- ["ctrl-u"] = "half-page-up",
 				},
 			},
 			fzf_opts = {
@@ -41,6 +39,9 @@ return {
 				stat_file = true,
 				fzf_opts = {
 					["--exact"] = true,
+				},
+				hls = {
+					file_part = "Directory",
 				},
 			},
 			files = {
@@ -60,6 +61,9 @@ return {
 				fzf_opts = {
 					["--exact"] = true,
 					["--with-nth"] = "3..", -- Show filename and path
+				},
+				hls = {
+					file_part = "Directory",
 				},
 			},
 			grep = {
@@ -81,6 +85,7 @@ return {
 					"-F ",
 					"-g !dev/ ",
 					"-g !vendor/**/tests/ ",
+					"-g !vendor/**/Test/ ",
 					"-g !vendor/composer/ ",
 					"-g !sync/ ",
 					"-g !lib/ ",
