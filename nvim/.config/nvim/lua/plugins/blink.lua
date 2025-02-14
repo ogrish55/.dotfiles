@@ -1,7 +1,20 @@
 return {
 	"saghen/blink.cmp",
-	dependencies = "rafamadriz/friendly-snippets",
-
+	dependencies = {
+		{
+			"L3MON4D3/LuaSnip",
+			build = "make install_jsregexp",
+			dependencies = {
+				{
+					"rafamadriz/friendly-snippets",
+					config = function()
+						require("luasnip.loaders.from_vscode").lazy_load()
+					end,
+				},
+			},
+		},
+	},
+	enabled = true,
 	-- use a release tag to download pre-built binaries
 	version = "*",
 	---@module 'blink.cmp'
@@ -11,7 +24,6 @@ return {
 			preset = "enter",
 			["<C-y>"] = { "accept", "fallback" },
 			["<Tab>"] = { "accept", "fallback" },
-			["<CR>"] = { "accept", "fallback" },
 			["<C-k>"] = { "select_prev", "fallback" },
 			["<C-j>"] = { "select_next", "fallback" },
 		},
@@ -50,7 +62,7 @@ return {
 		-- Default list of enabled providers defined so that you can extend it
 		-- elsewhere in your config, without redefining it, due to `opts_extend`
 		sources = {
-			default = { "lsp", "path", "snippets", "buffer" },
+			default = { "lsp", "snippets", "path", "buffer" },
 		},
 	},
 	opts_extend = { "sources.default" },

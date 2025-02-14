@@ -1,9 +1,14 @@
-1: configure blink to reduce amount of snippets
-2:
-    Install luasnippets to create snippets for:
-    - log = console.log()
-    - fpc = file_put_contents('/var/www/html/testlogs.log', "Testing \n", true);
-    - __con = constructor in php
+# 1:
+    -- styling cmp window
+    -- Eller skifte til blink.cmp og fjern de ødelagte snippets?...
+    
+# 2:
+    -- find keymap to show information about class / method on hover
 
+# 3:
+    - new keymaps for finding files I think?..
+
+# 4:
+    tmux sessionizer in vim
 
 

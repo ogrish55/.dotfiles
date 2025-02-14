@@ -1,14 +1,19 @@
 return {
 	"ibhagwan/fzf-lua",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
-	opts = function(_, opts)
-		return {
+	config = function()
+		local actions = require("fzf-lua").actions
+		require("fzf-lua").setup({
 			defaults = {
+				hls = {
+					file_part = "Directory",
+				},
 				fzf_colors = true,
+				formatter = { "path.filename_first", 2 },
 				file_icons = true,
 				winopts = {
-					width = 0.8,
-					height = 0.8,
+					width = 0.9,
+					height = 0.85,
 					preview = {
 						vertical = "down:65%",
 						hidden = false,
@@ -31,47 +36,62 @@ return {
 			fzf_opts = {
 				["--margin"] = "0,0",
 				["--layout"] = "reverse",
+				["--exact"] = true,
 				["--cycle"] = true,
 			},
+			lsp = {
+				async_or_timeout = true,
+			},
 			oldfiles = {
-				formatter = { "path.filename_first", 2 }, -- enables pasting whole file paths
 				cwd_only = true,
 				stat_file = true,
-				fzf_opts = {
-					["--exact"] = true,
-				},
-				hls = {
-					file_part = "Directory",
-				},
 			},
 			files = {
-				formatter = { "path.filename_first", 2 }, -- enables pasting whole file paths
-				hls = {
-					file_part = "Directory",
-				},
+				fd_opts = table.concat({
+					"--color=never ",
+					"--hidden ",
+					"--type f ",
+					"--type l ",
+					"-E '.git' ",
+					"-E 'dev/' ",
+					"-E 'dev/**' ",
+					"-E 'vendor/**/tests/' ",
+					"-E 'vendor/**/Test/' ",
+					"-E 'vendor/composer/' ",
+					"-E 'sync/' ",
+					"-E 'lib/' ",
+					"-E '.idea/' ",
+					"-E 'setup/' ",
+					"-E '.wexo/app/' ",
+					"-E '.wexo/**/*.sql' ",
+					"-E '.wexo/restore/' ",
+					"-E '.wexo/.local/' ",
+					"-E 'generated/' ",
+					"-E 'pub/' ",
+					"-E 'var/' ",
+					"-E 'logs/' ",
+					"-E 'CHANGELOG.md' ",
+					"-E 'node_modules/' ",
+					"-E 'dist/' ",
+					"-E 'public/' ",
+					"-E 'yarn.lock' ",
+					"-E 'composer.lock' ",
+				}),
 				fzf_opts = {
 					["--history"] = vim.fn.stdpath("data") .. "/fzf-lua-files-history",
-					["--exact"] = true,
 				},
 			},
 			buffers = {
 				sort_lastused = true,
 				cwd_only = true,
-				formatter = { "path.filename_first", 2 },
 				fzf_opts = {
-					["--exact"] = true,
-					["--with-nth"] = "3..", -- Show filename and path
-				},
-				hls = {
-					file_part = "Directory",
+					["--with-nth"] = "3..",
 				},
 			},
 			grep = {
 				fzf_opts = {
-					["--exact"] = true,
 					["--history"] = vim.fn.stdpath("data") .. "/fzf-lua-grep-history",
 				},
-				-- rg_opts = "-uu --column --line-number --no-heading --color=always --smart-case --max-columns=4096 -e -F",
 				rg_opts = table.concat({
 					"-uu ",
 					"--hidden ",
@@ -81,9 +101,9 @@ return {
 					"--color=always ",
 					"--smart-case ",
 					"--max-columns=4096 ",
-					"-e ",
 					"-F ",
 					"-g !dev/ ",
+					"-g !dev/** ",
 					"-g !vendor/**/tests/ ",
 					"-g !vendor/**/Test/ ",
 					"-g !vendor/composer/ ",
@@ -107,41 +127,13 @@ return {
 					"-g !yarn.lock ",
 					"-g !composer.lock ",
 				}),
-				-- actions = {
-				-- 	["ctrl-h"] = {
-				-- 		fn = function(_, opts)
-				-- 			actions.toggle_flag(
-				-- 				_,
-				-- 				vim.tbl_extend("force", opts, {
-				-- 					toggle_flag = table.concat({
-				-- 						"-u",
-				-- 					}),
-				-- 				})
-				-- 			)
-				-- 		end,
-				-- 		desc = "toggle flags",
-				-- 		header = function(o)
-				-- 			local flag = o.toggle_ignore_vendor_flag or "-u"
-				-- 			local fzf = require("fzf-lua")
-				-- 			if o.cmd and o.cmd:match(fzf.utils.lua_regex_escape(flag)) then
-				-- 				return "Enable git ignore"
-				-- 			else
-				-- 				return "Disable git ignore"
-				-- 			end
-				-- 		end,
-				-- 	},
-				-- 	-- files = {
-				-- 	-- 	true,
-				-- 	-- 	["ctrl-q"] = actions.file_sel_to_qf,
-				-- 	-- }
-				-- 	-- :FzfLua live_grep hls.file_part=Error hls.dir_part=FzfLuaCursorLine
-				-- 	-- actions inherit from 'actions.files' and merge
-				-- 	-- this action toggles between 'grep' and 'live_grep'
-				-- 	-- ["ctrl-g"] = { actions.grep_lgrep },
-				-- 	-- uncomment to enable '.gitignore' toggle for grep
-				-- 	-- ["ctrl-r"] = actions.toggle_ignore,
-				-- },
 			},
-		}
+			actions = {
+				files = {
+					true,
+					["ctrl-g"] = actions.toggle_ignore,
+				},
+			},
+		})
 	end,
 }

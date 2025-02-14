@@ -1,6 +1,4 @@
-local builtin = require("telescope.builtin")
 local utils = require("utils")
-local themes = require("telescope.themes")
 
 -- CUSTOM UTILS KEYMAPS
 -- copying current file path like in phpstorm
@@ -56,12 +54,7 @@ vim.keymap.set("n", "<leader>sk", function()
 	require("fzf-lua").keymaps()
 end, { desc = "[S]earch [K]eymaps" })
 
-vim.keymap.set("n", "<leader>sw", builtin.grep_string, { desc = "[S]earch current [W]ord" })
-vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
-vim.keymap.set("n", "<leader>sc", builtin.resume, { desc = "[S]earch [C]ontinue" })
-
 -- Harpoon
-
 local harpoon = require("harpoon")
 vim.keymap.set("n", "<leader>a", function()
 	harpoon:list():add()
@@ -92,26 +85,6 @@ vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("n", "n", "nzzzv")
 
--- Slightly advanced example of overriding default behavior and theme
-vim.keymap.set("n", "<leader>/", function()
-	-- You can pass additional configuration to Telescope to change the theme, layout, etc.
-	builtin.current_buffer_fuzzy_find(themes.get_dropdown({
-		winblend = 10,
-		previewer = false,
-	}))
-end, { desc = "[/] Fuzzily search in current buffer" })
-
--- It's also possible to pass additional configuration options.
---  See `:help telescope.builtin.live_grep()` for information about particular keys
-vim.keymap.set("n", "<leader>s/", function()
-	builtin.live_grep({
-		grep_open_files = true,
-		prompt_title = "Live Grep in Open Files",
-	})
-end, { desc = "[S]earch [/] in Open Files" })
-vim.keymap.set("n", "<leader>sn", function()
-	builtin.find_files({ cwd = vim.fn.stdpath("config") })
-end, { desc = "[S]earch [N]eovim files" })
--- Shortcut for searching your Neovim configuration files
+vim.keymap.set("n", "-", "<C-6>")
 
 return {}
