@@ -14,7 +14,7 @@ local file_put_contents = {
 local constructor = {
 	s("__constructor", {
 		t({
-			"public function __constuct(",
+			"public function __construct(",
 			"    ",
 		}),
 		i(1),

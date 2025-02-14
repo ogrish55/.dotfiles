@@ -22,25 +22,41 @@ vim.keymap.set("n", "<C-p>", "g;", { desc = "Go to previous change" })
 vim.keymap.set("n", "<C-n>", "g,", { desc = "Go to next change" })
 
 --------------FZFLUA KEYMAPS--------------
-vim.keymap.set("n", "<leader>r", function()
+vim.keymap.set("n", "<leader>ss", function()
 	require("fzf-lua").live_grep()
-end, { desc = "[S]earch [H]elp" })
+end, { desc = "[S]earch Everywhere" })
+
+vim.keymap.set("n", "<leader>sr", function()
+	require("fzf-lua").live_grep()
+end, { desc = "[S]earch Everywhere" })
 
 vim.keymap.set("n", "<leader>e", function()
 	require("fzf-lua").buffers()
-end, { desc = "[ ] Find existing buffers" })
+end, { desc = "[F]ind [E]xisting buffers" })
 
-vim.keymap.set("n", "<leader>w", function()
+vim.keymap.set("n", "<leader>fe", function()
+	require("fzf-lua").buffers()
+end, { desc = "[F]ind [E]xisting buffers" })
+
+vim.keymap.set("n", "<leader>ff", function()
 	require("fzf-lua").files()
-end)
+end, { desc = "[F]ind [F]iles" })
 
-vim.keymap.set("n", "<leader>q", function()
+vim.keymap.set("n", "<leader>fq", function()
 	require("fzf-lua").files()
-end)
+end, { desc = "[F]ind [F]iles" })
 
-vim.keymap.set("n", "<leader>o", function()
+vim.keymap.set("n", "<leader>fw", function()
+	require("fzf-lua").files()
+end, { desc = "[F]ind [F]iles" })
+
+vim.keymap.set("n", "<leader>fg", function()
+	require("fzf-lua").git_files()
+end, { desc = "[F]ind [G]it files" })
+
+vim.keymap.set("n", "<leader>fo", function()
 	require("fzf-lua").oldfiles()
-end)
+end, { desc = "[F]ind [O]ld files" })
 
 vim.keymap.set("n", "<leader>x", function()
 	require("fzf-lua").lsp_document_symbols()
