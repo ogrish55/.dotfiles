@@ -33,6 +33,17 @@ return {
 					luasnip.lsp_expand(args.body)
 				end,
 			},
+			window = {
+				completion = {
+					border = "rounded",
+					winblend = 5,
+					side_padding = 1,
+				},
+				documentation = {
+					border = "rounded",
+					winblend = 5,
+				},
+			},
 			completion = { completeopt = "menu,menuone,noinsert" },
 
 			-- For an understanding of why these mappings were
@@ -100,7 +111,7 @@ return {
 			},
 		})
 
-		cmp.setup.cmdline("/", {
+		cmp.setup.cmdline({ "/", "?" }, {
 			mapping = cmp.mapping.preset.cmdline(),
 			sources = {
 				{ name = "buffer" },
