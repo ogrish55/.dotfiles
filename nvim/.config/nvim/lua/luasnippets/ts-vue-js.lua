@@ -14,7 +14,7 @@ local FILETYPES = { "typescript", "vue", "javascript" }
 -- }
 
 local consoleDir = {
-	s("dir", {
+	s("dirconsole", {
 		t("console.dir("),
 		i(1),
 		t(", {depth: null})"),
@@ -22,13 +22,12 @@ local consoleDir = {
 }
 
 local consoleTrace = {
-	s("trace", {
+	s("traceconsole", {
 		t("console.trace()"),
 	}),
 }
 
 for _, ft in pairs(FILETYPES) do
-	-- luasnip.add_snippets(ft, consoleLog)
 	luasnip.add_snippets(ft, consoleDir)
 	luasnip.add_snippets(ft, consoleTrace)
 end

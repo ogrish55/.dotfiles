@@ -22,6 +22,10 @@ vim.keymap.set("n", "<C-p>", "g;", { desc = "Go to previous change" })
 vim.keymap.set("n", "<C-n>", "g,", { desc = "Go to next change" })
 
 --------------FZFLUA KEYMAPS--------------
+vim.keymap.set("n", "<leader>r", function()
+	require("fzf-lua").live_grep()
+end, { desc = "[S]earch Everywhere" })
+
 vim.keymap.set("n", "<leader>ss", function()
 	require("fzf-lua").live_grep()
 end, { desc = "[S]earch Everywhere" })
@@ -37,6 +41,14 @@ end, { desc = "[F]ind [E]xisting buffers" })
 vim.keymap.set("n", "<leader>fe", function()
 	require("fzf-lua").buffers()
 end, { desc = "[F]ind [E]xisting buffers" })
+
+vim.keymap.set("n", "<leader>w", function()
+	require("fzf-lua").files()
+end, { desc = "[F]ind [F]iles" })
+
+vim.keymap.set("n", "<leader>q", function()
+	require("fzf-lua").files()
+end, { desc = "[F]ind [F]iles" })
 
 vim.keymap.set("n", "<leader>ff", function()
 	require("fzf-lua").files()

@@ -1,6 +1,7 @@
 return {
 	"saghen/blink.cmp",
 	event = "InsertEnter",
+	enabled = false,
 	version = "v0.*",
 	opts_extend = { "sources.default", "sources.compat" },
 	dependencies = {
@@ -11,7 +12,11 @@ return {
 				{
 					"rafamadriz/friendly-snippets",
 					config = function()
+						require("luasnip.loaders.from_lua").lazy_load({ paths = { "./lua/luasnippets" } })
 						require("luasnip.loaders.from_vscode").lazy_load()
+						-- require("luasnip.loaders.from_vscode").lazy_load({
+						-- 	paths = { vim.fn.stdpath("config") .. "/snippets" },
+						-- })
 					end,
 				},
 			},
@@ -59,6 +64,9 @@ return {
 		},
 		fuzzy = {
 			use_frecency = true,
+			max_typos = function()
+				return 0
+			end,
 		},
 		keymap = {
 			preset = "enter",
@@ -71,6 +79,13 @@ return {
 		},
 		sources = {
 			default = { "lsp", "path", "snippets", "buffer" },
+			providers = {
+				snippets = {
+					name = "snippets",
+					enabled = true,
+					module = "blink.cmp.sources.snippets",
+				},
+			},
 			cmdline = { enabled = false },
 		},
 	},

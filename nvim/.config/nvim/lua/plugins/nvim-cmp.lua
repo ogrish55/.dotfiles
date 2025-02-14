@@ -1,11 +1,10 @@
 return {
 	"hrsh7th/nvim-cmp",
 	event = "InsertEnter",
-	enabled = false,
+	enabled = true,
 	dependencies = {
 		{
 			"L3MON4D3/LuaSnip",
-			build = "make install_jsregexp",
 			dependencies = {
 				-- `friendly-snippets` contains a variety of premade snippets.
 				-- See the README about individual language/framework/plugin snippets:
@@ -27,7 +26,6 @@ return {
 	config = function()
 		local cmp = require("cmp")
 		local luasnip = require("luasnip")
-		luasnip.config.setup({})
 
 		cmp.setup({
 			snippet = {
