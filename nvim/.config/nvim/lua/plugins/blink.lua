@@ -64,9 +64,6 @@ return {
 		},
 		fuzzy = {
 			use_frecency = true,
-			max_typos = function()
-				return 0
-			end,
 		},
 		keymap = {
 			preset = "enter",
@@ -86,7 +83,6 @@ return {
 					module = "blink.cmp.sources.snippets",
 				},
 			},
-			cmdline = { enabled = false },
 		},
 	},
 }

@@ -6,11 +6,9 @@ return {
 		local utils = require("fzf-lua").utils
 		local path = require("fzf-lua").path
 		local myFormatter = {
-			-- <Tab> is used as the invisible space between the parent and the file part
 			enrich = function(o, v)
 				o.fzf_opts = vim.tbl_extend("keep", o.fzf_opts or {}, { ["--tabstop"] = 1 })
 				if tonumber(v) == 2 then
-					-- https://github.com/ibhagwan/fzf-lua/pull/1255
 					o.fzf_opts = vim.tbl_extend("keep", o.fzf_opts or {}, {
 						["--ellipsis"] = " ",
 						["--no-hscroll"] = true,
@@ -18,18 +16,49 @@ return {
 				end
 				return o
 			end,
-			-- underscore `_to` returns a custom to function when options could
-			-- affect the transformation, here we create a different function
-			-- base on the dir part highlight group.
-			-- We use a string function with hardcoded values as non-scope vars
-			-- (globals or file-locals) are stored by ref and will be nil in the
-			-- `string.dump` (from `config.bytecode`), we use the 3rd function
-			-- argument `m` to pass module imports (path, utils, etc).
 			_to = function(o, v)
 				local _, hl_dir = utils.ansi_from_hl(o.hls.dir_part, "foo")
 				local _, hl_file = utils.ansi_from_hl(o.hls.file_part, "foo")
 				local _, hl_ignore = utils.ansi_from_hl(o.hls.ignore, "foo")
 				local v2 = tonumber(v) ~= 2 and "" or [[, "\xc2\xa0" .. string.rep(" ", 200) .. s]]
+				-- 	return ([[
+				-- 				return function(s, _, m)
+				-- 					local _path, _utils = m.path, m.utils
+				-- 					local _hl_dir = "%s"
+				-- 					local _hl_file = "%s"
+				-- 					local _hl_ignore = "%s"
+				-- 					local tail = _path.tail(s)
+				-- 					local parent = _path.parent(s)
+				-- 					local ignore = false
+				--
+				-- 					if s ~= nil and s ~= "" then
+				-- 						vim.system({ "git", "check-ignore", filepath }, { text = true }, function(obj)
+				-- 							if obj.code == 0 then
+				-- 								ignore = true
+				-- 							end
+				--
+				-- 							if ignore then
+				-- 								tail = _hl_ignore .. tail .. _utils.ansi_escseq.clear
+				-- 							elseif #_hl_file > 0 then
+				-- 								tail = _hl_file .. tail .. _utils.ansi_escseq.clear
+				-- 							end
+				-- 							if parent then
+				-- 								parent = _path.remove_trailing(parent)
+				-- 								if ignore then
+				-- 									parent = _hl_ignore .. parent .. _utils.ansi_escseq.clear
+				-- 								elseif #_hl_dir > 0 then
+				-- 									parent = _hl_dir .. parent .. _utils.ansi_escseq.clear
+				-- 								end
+				-- 								return tail .. "\t" .. parent %s
+				-- 							else
+				-- 								return tail %s
+				-- 							end
+				-- 						end)
+				-- 					end
+				-- 				end
+				-- 				]]):format(hl_dir or "", hl_file or "", hl_ignore or "", v2, v2)
+				-- end,
+
 				return ([[
 						return function(s, _, m)
 							local _path, _utils = m.path, m.utils
@@ -40,7 +69,7 @@ return {
 							local parent = _path.parent(s)
 							local ignore = false
 							if s ~= nil and s ~= "" then
-								if string.find(s, "vendor") then
+								if s:match("^dev") or s:match("^vendor") or s:match("^var") or s:match("^node_modules") or s:match("^generated") or s:match("^pub") then
 									ignore = true
 								end
 							end
@@ -64,11 +93,9 @@ return {
 					]]):format(hl_dir or "", hl_file or "", hl_ignore or "", v2, v2)
 			end,
 			from = function(s, _)
-				s = s:gsub("\xc2\xa0     .*$", "") -- gsub v2 postfix
+				s = s:gsub("\xc2\xa0     .*$", "")
 				local parts = utils.strsplit(s, utils.nbsp)
 				local last = parts[#parts]
-				-- Lines from grep, lsp, tags are formatted <file>:<line>:<col>:<text>
-				-- the pattern below makes sure tab doesn't come from the line text
 				local filename, rest = last:match("^([^:]-)\t(.+)$")
 				if filename and rest then
 					local parent
@@ -78,7 +105,6 @@ return {
 						parent = rest:match("^[^:]+")
 					end
 					local fullpath = path.join({ parent, filename })
-					-- overwrite last part with restored fullpath + rest of line
 					parts[#parts] = fullpath .. rest:sub(#parent + 1)
 					return table.concat(parts, utils.nbsp)
 				else
