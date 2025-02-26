@@ -117,11 +117,11 @@ end)
 
 -- Diagnostic
 vim.keymap.set("n", "<leader>n", function()
-	vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR })
+	vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.WARN })
 end, { desc = "Diagnostic Next" })
 
 vim.keymap.set("n", "<leader>p", function()
-	vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })
+	vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.WARN })
 end, { desc = "Diagnostic Previous" })
 
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")

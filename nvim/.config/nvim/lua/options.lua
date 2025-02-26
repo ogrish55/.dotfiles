@@ -32,3 +32,4 @@ opt.inccommand = "split"
 opt.cursorline = true
 opt.scrolloff = 20
 opt.updatetime = 50
+opt.swapfile = false
