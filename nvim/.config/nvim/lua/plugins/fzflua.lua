@@ -21,44 +21,6 @@ return {
 				local _, hl_file = utils.ansi_from_hl(o.hls.file_part, "foo")
 				local _, hl_ignore = utils.ansi_from_hl(o.hls.ignore, "foo")
 				local v2 = tonumber(v) ~= 2 and "" or [[, "\xc2\xa0" .. string.rep(" ", 200) .. s]]
-				-- 	return ([[
-				-- 				return function(s, _, m)
-				-- 					local _path, _utils = m.path, m.utils
-				-- 					local _hl_dir = "%s"
-				-- 					local _hl_file = "%s"
-				-- 					local _hl_ignore = "%s"
-				-- 					local tail = _path.tail(s)
-				-- 					local parent = _path.parent(s)
-				-- 					local ignore = false
-				--
-				-- 					if s ~= nil and s ~= "" then
-				-- 						vim.system({ "git", "check-ignore", filepath }, { text = true }, function(obj)
-				-- 							if obj.code == 0 then
-				-- 								ignore = true
-				-- 							end
-				--
-				-- 							if ignore then
-				-- 								tail = _hl_ignore .. tail .. _utils.ansi_escseq.clear
-				-- 							elseif #_hl_file > 0 then
-				-- 								tail = _hl_file .. tail .. _utils.ansi_escseq.clear
-				-- 							end
-				-- 							if parent then
-				-- 								parent = _path.remove_trailing(parent)
-				-- 								if ignore then
-				-- 									parent = _hl_ignore .. parent .. _utils.ansi_escseq.clear
-				-- 								elseif #_hl_dir > 0 then
-				-- 									parent = _hl_dir .. parent .. _utils.ansi_escseq.clear
-				-- 								end
-				-- 								return tail .. "\t" .. parent %s
-				-- 							else
-				-- 								return tail %s
-				-- 							end
-				-- 						end)
-				-- 					end
-				-- 				end
-				-- 				]]):format(hl_dir or "", hl_file or "", hl_ignore or "", v2, v2)
-				-- end,
-
 				return ([[
 						return function(s, _, m)
 							local _path, _utils = m.path, m.utils
@@ -122,7 +84,9 @@ return {
 
 			defaults = {
 				hls = {
-					file_part = "Directory",
+					-- file_part = "Directory",
+					file_part = "BlinkCmpLabel",
+					dir_part = "BlinkCmpLabel",
 					ignore = "Comment",
 				},
 				fzf_colors = true,
@@ -171,30 +135,11 @@ return {
 					"--hidden ",
 					"--type f ",
 					"--type l ",
-					"-E '.git' ",
-					"-E 'dev/' ",
-					"-E 'dev/**' ",
-					"-E 'vendor/**/tests/' ",
-					"-E 'vendor/**/Test/' ",
-					"-E 'vendor/composer/' ",
-					"-E 'sync/' ",
-					"-E 'lib/' ",
-					"-E '.idea/' ",
-					"-E 'setup/' ",
-					"-E '.wexo/app/' ",
-					"-E '.wexo/**/*.sql' ",
-					"-E '.wexo/restore/' ",
-					"-E '.wexo/.local/' ",
-					"-E 'generated/' ",
-					"-E 'pub/' ",
-					"-E 'var/' ",
-					"-E 'logs/' ",
-					"-E 'CHANGELOG.md' ",
-					"-E 'node_modules/' ",
-					"-E 'dist/' ",
-					"-E 'public/' ",
-					"-E 'yarn.lock' ",
-					"-E 'composer.lock' ",
+					"-E '.git' -E 'dev/' -E 'dev/**' -E 'vendor/**/tests/' -E 'vendor/**/Test/' ",
+					"-E 'vendor/composer/' -E 'sync/' -E 'lib/' -E '.idea/' -E 'setup/' -E '.wexo/app/' ",
+					"-E '.wexo/**/*.sql' -E '.wexo/restore/' -E '.wexo/.local/' -E 'generated/' -E 'pub/' ",
+					"-E 'var/' -E 'logs/' -E 'CHANGELOG.md' -E 'node_modules/' -E 'dist/' -E 'public/' ",
+					"-E 'yarn.lock' -E 'composer.lock' ",
 				}),
 				fzf_opts = {
 					["--history"] = vim.fn.stdpath("data") .. "/fzf-lua-files-history",
@@ -213,37 +158,11 @@ return {
 				},
 				rg_opts = table.concat({
 					"-uu ",
-					"--hidden ",
-					"--column ",
-					"--line-number ",
-					"--no-heading ",
-					"--color=always ",
-					"--smart-case ",
-					"--max-columns=4096 ",
-					"-F ",
-					"-g !dev/ ",
-					"-g !dev/** ",
-					"-g !vendor/**/tests/ ",
-					"-g !vendor/**/Test/ ",
-					"-g !vendor/composer/ ",
-					"-g !sync/ ",
-					"-g !lib/ ",
-					"-g !.idea/ ",
-					"-g !setup/ ",
-					"-g !.wexo/app/ ",
-					"-g !.wexo/**/*.sql ",
-					"-g !.wexo/restore/ ",
-					"-g !.wexo/.local/ ",
-					"-g !generated/ ",
-					"-g !pub/ ",
-					"-g !var/ ",
-					"-g !logs/ ",
-					"-g !CHANGELOG.md ",
-					"-g !node_modules/ ",
-					"-g !dist/ ",
-					"-g !.git/ ",
-					"-g !public/ ",
-					"-g !yarn.lock ",
+					"--hidden --column --line-number --no-heading --color=always --smart-case --max-columns=4096 -F ",
+					"-g !dev/ -g !dev/** -g !vendor/**/tests/ -g !vendor/**/Test/ -g !vendor/composer/ ",
+					"-g !sync/ -g !lib/ -g !.idea/ -g !setup/ -g !.wexo/app/ -g !.wexo/**/*.sql ",
+					"-g !.wexo/restore/ -g !.wexo/.local/ -g !generated/ -g !pub/ -g !var/ -g !logs/ ",
+					"-g !CHANGELOG.md -g !node_modules/ -g !dist/ -g !.git/ -g !public/ -g !yarn.lock ",
 					"-g !composer.lock ",
 				}),
 			},

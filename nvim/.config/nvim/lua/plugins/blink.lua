@@ -1,8 +1,8 @@
 return {
 	"saghen/blink.cmp",
 	event = "InsertEnter",
-	enabled = false,
-	version = "v0.*",
+	enabled = true,
+	version = "*",
 	opts_extend = { "sources.default", "sources.compat" },
 	dependencies = {
 		{
@@ -35,7 +35,9 @@ return {
 			},
 			list = {
 				selection = {
-					auto_insert = false,
+					auto_insert = function(ctx)
+						return ctx.mode == "cmdline"
+					end,
 				},
 			},
 			menu = {
@@ -55,7 +57,7 @@ return {
 			},
 		},
 		signature = {
-			enabled = true,
+			enabled = false,
 			window = {
 				border = "rounded",
 				winblend = 10,
@@ -63,16 +65,29 @@ return {
 			},
 		},
 		fuzzy = {
+			-- max_typos = function(keyword)
+			-- 	return 0
+			-- end,
+			use_proximity = true,
 			use_frecency = true,
+			prebuilt_binaries = {
+				download = true,
+			},
+		},
+		cmdline = {
+			keymap = {
+				preset = "super-tab",
+				["<C-y>"] = { "accept", "fallback" },
+				["<C-k>"] = { "select_prev", "fallback" },
+				["<C-j>"] = { "select_next", "fallback" },
+			},
 		},
 		keymap = {
-			preset = "enter",
-			["<C-space>"] = { "show", "hide" },
-			["<C-e>"] = { "show_documentation", "hide_documentation" },
+			preset = "super-tab",
 			["<C-y>"] = { "accept", "fallback" },
-			["<Tab>"] = { "accept", "fallback" },
 			["<C-k>"] = { "select_prev", "fallback" },
 			["<C-j>"] = { "select_next", "fallback" },
+			["<Cr>"] = { "accept", "fallback" },
 		},
 		sources = {
 			default = { "lsp", "path", "snippets", "buffer" },

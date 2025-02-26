@@ -6,7 +6,7 @@ opt.tabstop = 2
 opt.number = true
 opt.relativenumber = true
 opt.winbar = "%=%f%="
-opt.scr = 20
+opt.scroll = 20
 opt.mouse = "a"
 opt.wildmode = "full"
 opt.showmode = false
@@ -31,3 +31,4 @@ opt.smartindent = true -- Insert indents automatically
 opt.inccommand = "split"
 opt.cursorline = true
 opt.scrolloff = 20
+opt.updatetime = 50
