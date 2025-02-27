@@ -4,5 +4,6 @@ return {
 	build = "make install_jsregexp",
 	config = function()
 		require("luasnip.loaders.from_lua").load({ paths = { "./lua/luasnippets" } })
+		require("luasnip").filetype_extend("twig", { "html" })
 	end,
 }

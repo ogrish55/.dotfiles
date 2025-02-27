@@ -6,7 +6,7 @@ return {
 				local res = vim.fn.systemlist({ "git", "check-ignore", filepath })
 				return #res == 0
 			end
-			return false
+			return true
 		end
 
 		local null_ls = require("null-ls")

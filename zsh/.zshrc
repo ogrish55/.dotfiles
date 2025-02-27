@@ -15,6 +15,7 @@ fi
 export PATH=/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH
 export PATH=/opt/homebrew/opt/findutils/libexec/gnubin:$PATH
 export PATH=/opt/homebrew/bin:$PATH
+export PATH=/Users/wexokk/.cargo/bin:$PATH
 export PATH=/Users/wexokk/.local/bin:$PATH
 export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 export PATH="$PATH:$HOME/.composer/vendor/bin"
