@@ -1,0 +1,18 @@
+{
+    "language_server_reference_reference_finder.reference_timeout": 15,
+    "language_server.diagnostic_exclude_paths": ["vendor/**/*"],
+    "language_server_phpstan.enabled": false,
+    "language_server_php_cs_fixer.enabled": false,
+    "php_code_sniffer.enabled": false,
+    "indexer.exclude_patterns": [
+        "\/vendor\/**\/Tests\/**\/*",
+        "\/vendor\/**\/Test\/**\/*",
+        "\/vendor\/**\/tests\/**\/*",
+        "\/vendor\/**\/test\/**\/*",
+        "\/vendor\/composer\/**\/*",
+        "\/dev\/**\/*",
+        "\/generated\/**\/*",
+        "generated\/",
+        "dev\/"
+    ]
+}
