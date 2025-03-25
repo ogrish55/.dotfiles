@@ -4,6 +4,8 @@ local utils = require("utils")
 -- copying current file path like in phpstorm
 vim.keymap.set("n", "<leader>cf", utils.copyCurrentFilePath)
 
+vim.keymap.set("n", "<leader>bdi", utils.deleteVendorBuffers, { desc = "[B]uff [D]elete [I]gnored" })
+
 -- GIT
 vim.keymap.set("n", "<leader>gb", function()
 	require("gitsigns").blame()
