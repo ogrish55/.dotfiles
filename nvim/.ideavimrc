@@ -16,9 +16,10 @@ let g:highlightedyank_highlight_duration = 200
 let g:highlightedyank_highlight_in_visual = 0
 
 " Mappings ----------
-nmap <leader>w <Action>(Annotate)
-nmap <leader>r <Action>(GotoNextError)
-nmap <leader>e <Action>(GotoPreviousError)
+nmap <leader>e <Action>(RecentFiles)
+nmap <leader>r <Action>(FindInPath)
+nmap <leader>w <Action>(GotoFile)
+nmap <leader>q <Action>(GotoFile)
 nmap <leader>x <Action>(FileStructurePopup)
 nmap <leader>cf <Action>(CopyContentRootPath)
 
