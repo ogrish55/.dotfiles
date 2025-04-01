@@ -2,7 +2,7 @@ return {
 	"saghen/blink.cmp",
 	event = "InsertEnter",
 	enabled = true,
-	version = "*",
+	version = "1.*",
 	opts_extend = { "sources.default", "sources.compat" },
 	dependencies = {
 		{
@@ -57,10 +57,11 @@ return {
 			},
 		},
 		signature = {
-			enabled = false,
+			enabled = true,
 			window = {
 				border = "rounded",
 				winblend = 10,
+				show_documentation = false,
 				winhighlight = "Normal:CatppuccinSurface0,FloatBorder:CatppuccinSurface2,Search:None",
 			},
 		},
@@ -75,6 +76,12 @@ return {
 			},
 		},
 		cmdline = {
+			enabled = true,
+			completion = {
+				menu = {
+					auto_show = true,
+				},
+			},
 			keymap = {
 				preset = "super-tab",
 				["<C-y>"] = { "accept", "fallback" },
