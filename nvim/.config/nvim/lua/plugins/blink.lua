@@ -66,14 +66,14 @@ return {
 			},
 		},
 		fuzzy = {
-			-- max_typos = function(keyword)
-			-- 	return 0
-			-- end,
+			sorts = {
+				"exact",
+				"score",
+				"sort_text",
+			},
+			implementation = "prefer_rust_with_warning",
 			use_proximity = true,
 			use_frecency = true,
-			prebuilt_binaries = {
-				download = true,
-			},
 		},
 		cmdline = {
 			enabled = true,
@@ -97,12 +97,18 @@ return {
 			["<Cr>"] = { "accept", "fallback" },
 		},
 		sources = {
-			default = { "lsp", "path", "snippets", "buffer" },
+			default = { "lsp", "path", "snippets", "buffer", "markdown" },
 			providers = {
 				snippets = {
 					name = "snippets",
 					enabled = true,
 					module = "blink.cmp.sources.snippets",
+				},
+				markdown = {
+					name = "RenderMarkdown",
+					enabled = true,
+					module = "render-markdown.integ.blink",
+					fallbacks = { "lsp" },
 				},
 			},
 		},

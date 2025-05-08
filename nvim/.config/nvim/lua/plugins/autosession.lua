@@ -10,6 +10,7 @@ return {
 		allowed_dirs = {
 			"~/Projects/*",
 			"~/.dotfiles/",
+			"~/Projects/personal/*",
 			"~/Projects/daarbakgroup/strapi/",
 			"~/Projects/daarbakgroup/frontend/roso-frontend/",
 			"~/Projects/daarbakgroup/middleware/",
