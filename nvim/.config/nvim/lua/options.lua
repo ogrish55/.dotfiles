@@ -33,3 +33,11 @@ opt.cursorline = true
 opt.scrolloff = 20
 opt.updatetime = 50
 opt.swapfile = false
+opt.winborder = "rounded"
+
+vim.diagnostic.config({
+	-- virtual_lines = { current_line = true },
+	virtual_text = {
+		current_line = true,
+	},
+})

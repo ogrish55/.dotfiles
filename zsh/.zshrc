@@ -21,6 +21,7 @@ export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 export PATH="$PATH:$HOME/.composer/vendor/bin"
 export LESS="-IRN --incsearch"
 export RIPGREP_CONFIG_PATH="$HOME/.dotfiles/ripgrep/.ripgreprc"
+export HOMEBREW_NO_AUTO_UPDATE=1
 
 #kubectl binary plugin
 export USE_GKE_GCLOUD_AUTH_PLUGIN=true
@@ -38,13 +39,13 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to automatically update without prompting.
 # DISABLE_UPDATE_PROMPT="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+ export UPDATE_ZSH_DAYS=60
 
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS="true"
