@@ -61,7 +61,6 @@ return {
 			window = {
 				border = "rounded",
 				winblend = 10,
-				show_documentation = false,
 				winhighlight = "Normal:CatppuccinSurface0,FloatBorder:CatppuccinSurface2,Search:None",
 			},
 		},
@@ -71,7 +70,7 @@ return {
 				"score",
 				"sort_text",
 			},
-			implementation = "prefer_rust_with_warning",
+			implementation = "rust",
 			use_proximity = true,
 			use_frecency = true,
 		},
