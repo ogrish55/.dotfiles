@@ -22,6 +22,7 @@ return {
 			},
 			opts = { history = true, delete_check_events = "TextChanged" },
 		},
+		{ "onsails/lspkind.nvim" },
 	},
 	---@module 'blink.cmp'
 	---@type blink.cmp.Config
@@ -44,7 +45,43 @@ return {
 				border = "rounded",
 				winblend = 10,
 				winhighlight = "Normal:CatppuccinSurface0,FloatBorder:CatppuccinSurface2,Search:None",
-				draw = { treesitter = { "lsp" } },
+				draw = {
+					columns = {
+						{ "kind_icon" },
+						{ "label" },
+					},
+					treesitter = { "lsp" },
+					components = {
+						kind_icon = {
+							ellipsis = false,
+							text = function(ctx)
+								local icon = ctx.kind_icon
+								if vim.tbl_contains({ "Path" }, ctx.source_name) then
+									local dev_icon, _ = require("nvim-web-devicons").get_icon(ctx.label)
+									if dev_icon then
+										icon = dev_icon
+									end
+								else
+									icon = require("lspkind").symbolic(ctx.kind, {
+										mode = "symbol",
+									})
+								end
+
+								return icon .. ctx.icon_gap
+							end,
+							highlight = function(ctx)
+								local hl = "BlinkCmpKind" .. ctx.kind
+								if vim.tbl_contains({ "Path" }, ctx.source_name) then
+									local dev_icon, dev_hl = require("nvim-web-devicons").get_icon(ctx.label)
+									if dev_icon then
+										hl = dev_hl
+									end
+								end
+								return hl
+							end,
+						},
+					},
+				},
 			},
 			documentation = {
 				auto_show = true,

@@ -3,17 +3,19 @@ return {
 		"catppuccin/nvim",
 		name = "catppuccin",
 		priority = 1000,
-		init = function()
-			vim.cmd.colorscheme("catppuccin-mocha")
+		opts = {
+			flavour = "mocha",
+			integrations = {
+				blink_cmp = true,
+				harpoon = true,
+				gitsigns = true,
+				fzf = false,
+			},
+		},
+		config = function(_, opts)
+			require("catppuccin").setup(opts)
+			vim.cmd.colorscheme("catppuccin")
 			vim.cmd.hi("Comment gui=none")
 		end,
-	},
-	{
-		"folke/tokyonight.nvim",
-		priority = 1000, -- Make sure to load this before all the other start plugins.
-		-- init = function()
-		-- 	vim.cmd.colorscheme("tokyonight-night")
-		-- 	vim.cmd.hi("Comment gui=none")
-		-- end,
 	},
 }
