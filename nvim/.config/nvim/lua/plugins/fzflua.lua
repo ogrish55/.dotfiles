@@ -85,8 +85,8 @@ return {
 			defaults = {
 				hls = {
 					-- file_part = "Directory",
-					file_part = "BlinkCmpLabel",
-					dir_part = "BlinkCmpLabel",
+					file_part = "BlinkCmpLabelMatch",
+					dir_part = "BlinkCmpLabelMatch",
 					ignore = "Comment",
 				},
 				fzf_colors = true,
