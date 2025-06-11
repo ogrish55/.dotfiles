@@ -72,10 +72,6 @@ vim.keymap.set("n", "<leader>fg", function()
 	require("fzf-lua").git_files()
 end, { desc = "[F]ind [G]it files" })
 
-vim.keymap.set("n", "<leader>fe", function()
-	require("fzf-lua").buffers({ cwd_only = false, sort_lastued = true, fzf_opts = { ["--with-nth"] = "3.." } })
-end, { desc = "Buffer All" })
-
 vim.keymap.set("n", "<leader>fo", function()
 	require("fzf-lua").oldfiles()
 end, { desc = "[F]ind [O]ld files" })

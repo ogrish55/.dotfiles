@@ -84,13 +84,11 @@ return {
 
 			defaults = {
 				hls = {
-					-- file_part = "Directory",
 					file_part = "BlinkCmpLabelMatch",
 					dir_part = "BlinkCmpLabelMatch",
 					ignore = "Comment",
 				},
 				fzf_colors = true,
-				-- formatter = { myFormatter },
 				formatter = { "git.gitignore", 2 },
 				-- formatter = { "path.filename_first", 2 },
 				file_icons = true,

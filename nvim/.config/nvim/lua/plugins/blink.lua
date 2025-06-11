@@ -47,8 +47,8 @@ return {
 				winhighlight = "Normal:CatppuccinSurface0,FloatBorder:CatppuccinSurface2,Search:None",
 				draw = {
 					columns = {
-						{ "kind_icon" },
-						{ "label" },
+						{ "kind_icon", "label", gap = 1 },
+						{ "kind" },
 					},
 					treesitter = { "lsp" },
 					components = {
