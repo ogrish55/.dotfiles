@@ -5,7 +5,6 @@ vim.g.maplocalleader = " "
 vim.g.have_nerd_font = true
 
 require("options")
-require("filetypes")
 require("lazy-bootstrap")
 require("lazy-plugins")
 require("autocmds")
