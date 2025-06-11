@@ -3,6 +3,8 @@ return {
 	version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
 	build = "make install_jsregexp",
 	config = function()
-		require("luasnip").filetype_extend("twig", { "html" })
+		local luasnip = require("luasnip")
+		luasnip.filetype_extend("twig", { "html" })
+		luasnip.filetype_extend("phtml", { "html" })
 	end,
 }
