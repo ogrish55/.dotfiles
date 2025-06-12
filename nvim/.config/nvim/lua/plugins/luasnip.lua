@@ -15,7 +15,7 @@ return {
 					return { "php", "html" }
 				end
 
-				return ft
+				return { ft }
 			end,
 		})
 
