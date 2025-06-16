@@ -7,11 +7,15 @@ RED='\033[0;31m'
 GREEN='\033[0;32m'
 RESET='\033[0m'
 
+TYPES="feat \t fix \t refactor \t style \t perf \t revert
+"
+
 # does the git branch contain '/' ?
 if [[ "$gitBranch" == *"/"* ]]; then
   gitBranch=$(echo "$gitBranch" | awk -F '/' '{print $1}'| xargs -I {} echo "[{}]")
 
   echo -e "\n${GREEN}\t\tEnter commit message\n${RESET}"
+  echo -e "${TYPES}"
   read -p "$gitBranch " commitMessage
 
   modifiedCommitMessage="$gitBranch $commitMessage"
@@ -21,6 +25,7 @@ else
   # branch name doesn't contain a '/' so we can't  extract task id
   
   echo -e "\n${RED}\t\tbranch name doesn't contain task id - regular commit\n${RESET}"
+  echo -e "${TYPES}"
   read -p "Commit message: " commitMessage
   git commit -m "$commitMessage"
 fi
