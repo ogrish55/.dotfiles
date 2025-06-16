@@ -103,12 +103,12 @@ return {
 		},
 		fuzzy = {
 			sorts = {
-				function(a, b)
-					if a.exact and a.label == "log" and a.source_name == "snippets" then
-						return true
-					end
-					return nil
-				end,
+				-- function(a, b)
+				-- 	if a.exact and a.label == "log" and a.source_name == "snippets" then
+				-- 		return true
+				-- 	end
+				-- 	return nil
+				-- end,
 				"exact",
 				"score",
 				"sort_text",

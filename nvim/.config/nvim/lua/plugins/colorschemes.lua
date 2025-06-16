@@ -9,7 +9,7 @@ return {
 				blink_cmp = true,
 				harpoon = true,
 				gitsigns = true,
-				fzf = false,
+				fzf = true,
 			},
 		},
 		config = function(_, opts)
