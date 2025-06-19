@@ -146,6 +146,7 @@ return {
 			buffers = {
 				sort_lastused = true,
 				cwd_only = true,
+				ignore_current_buffer = true,
 				fzf_opts = {
 					["--with-nth"] = "3..",
 				},
