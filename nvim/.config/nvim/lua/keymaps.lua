@@ -130,4 +130,10 @@ vim.keymap.set("n", "n", "nzzzv")
 
 vim.keymap.set("n", "-", "<C-6>")
 vim.keymap.set("v", "p", '"_dP')
+
+--------------UNDOTREE KEYMAPS--------------
+
+vim.keymap.set("n", "<leader>ut", vim.cmd.UndotreeToggle, { desc = "[U]ndotree [T]oggle" })
+vim.keymap.set("n", "<leader>uf", vim.cmd.UndotreeFocus, { desc = "[U]ndotree [F]ocus" })
+
 return {}
