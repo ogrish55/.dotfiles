@@ -17,7 +17,7 @@ else
     echo -e "$(cat -)\n/Users/wexokk/Projects/daarbakgroup/frontend/roso-frontend" | \
     echo -e "$(cat -)\n/Users/wexokk/Projects/daarbakgroup/middleware" | \
     echo -e "$(cat -)\n/Users/wexokk/Projects/daarbakgroup/strapi" | \
-    echo -e "$(cat -)\n/Users/wexokk/Projects/personal/hvad-vi-spiser" \
+    echo -e "$(cat -)\n/Users/wexokk/Projects/personal/minmadbog" \
     )
 fi
 

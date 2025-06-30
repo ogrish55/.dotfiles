@@ -175,6 +175,65 @@ return {
 					},
 				},
 			},
+			volar = {
+				init_options = {
+					vue = {
+						hybridMode = false,
+					},
+				},
+				settings = {
+					typescript = {
+						inlayHints = {
+							enumMemberValues = {
+								enabled = true,
+							},
+							functionLikeReturnTypes = {
+								enabled = true,
+							},
+							propertyDeclarationTypes = {
+								enabled = true,
+							},
+							parameterTypes = {
+								enabled = true,
+								suppressWhenArgumentMatchesName = true,
+							},
+							variableTypes = {
+								enabled = true,
+							},
+						},
+					},
+				},
+			},
+			ts_ls = {
+				filetypes = { "typescript", "javascript", "vue" },
+				init_options = {
+					plugins = {
+						{
+							name = "@vue/typescript-plugin",
+							location = vim.fn.stdpath("data")
+								.. "/mason/packages/vue-language-server/node_modules/@vue/language-server",
+							languages = { "vue" },
+						},
+					},
+				},
+				settings = {
+					typescript = {
+						tsserver = {
+							useSyntaxServer = false,
+						},
+						inlayHints = {
+							includeInlayParameterNameHints = "all",
+							includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+							includeInlayFunctionParameterTypeHints = true,
+							includeInlayVariableTypeHints = true,
+							includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+							includeInlayPropertyDeclarationTypeHints = true,
+							includeInlayFunctionLikeReturnTypeHints = true,
+							includeInlayEnumMemberValueHints = true,
+						},
+					},
+				},
+			},
 		}
 
 		--  You can press `g?` for help in this menu.
@@ -188,6 +247,8 @@ return {
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
 		require("mason-lspconfig").setup({
+			ensure_installed = ensure_installed,
+			automatic_installation = false,
 			handlers = {
 				function(server_name)
 					local server = servers[server_name] or {}
