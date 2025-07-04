@@ -2,7 +2,6 @@ return {
 	"nvimtools/none-ls.nvim",
 	config = function()
 		local function is_valid_file(filepath)
-			print(filepath)
 			if filepath ~= nil and filepath ~= "" then
 				-- Check if the file is ignored by Git
 				local res = vim.fn.systemlist({ "git", "check-ignore", filepath })

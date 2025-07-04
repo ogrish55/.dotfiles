@@ -27,13 +27,19 @@ opt.ruler = false
 opt.list = false -- set to true to show below signs on tab, trail etc..
 opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 opt.smoothscroll = true
-opt.smartindent = true -- Insert indents automatically
+opt.smartindent = true
 opt.inccommand = "split"
 opt.cursorline = true
 opt.scrolloff = 20
 opt.updatetime = 50
 opt.swapfile = false
 opt.winborder = "rounded"
+
+opt.showmatch = true -- show matching brackets
+
+-- trying stack for jumplist --
+-- see :h jumpoptions
+opt.jumpoptions = { "stack", "clean" }
 
 vim.diagnostic.config({
 	-- virtual_lines = { current_line = true },

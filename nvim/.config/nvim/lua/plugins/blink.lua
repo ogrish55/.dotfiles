@@ -103,6 +103,15 @@ return {
 		},
 		fuzzy = {
 			sorts = {
+				function(a, b)
+					if a.source_name == "snippets" and a.label == "log" then
+						return true
+					end
+					if b.source_name == "snippets" and b.label == "log" then
+						return false
+					end
+					-- otherwise, fall back to the next sorter
+				end,
 				-- function(a, b)
 				-- 	if a.exact and a.label == "log" and a.source_name == "snippets" then
 				-- 		return true

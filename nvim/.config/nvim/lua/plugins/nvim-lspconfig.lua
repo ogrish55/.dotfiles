@@ -1,3 +1,5 @@
+local licenceKey = require("intelephense_licence")
+
 return {
 	-- Main LSP Configuration
 	"neovim/nvim-lspconfig",
@@ -137,32 +139,32 @@ return {
 			-- But for many setups, the LSP (`ts_ls`) will work just fine
 			-- ts_ls = {},
 			--
-			-- intelephense = {
-			-- 	init_options = {
-			-- 		licenseKey = "test",
-			-- 	},
-			-- 	settings = {
-			-- 		intelephense = {
-			-- 			files = {
-			-- 				maxSize = 100000000,
-			-- 				exclude = {
-			-- 					"**/include/**",
-			-- 					"**/vendor/**/{[Tt]ests,[Tt]est}/**",
-			-- 					"**/dev/**",
-			-- 					"**/generated/**",
-			-- 				},
-			-- 			},
-			-- 			references = {
-			-- 				exclude = {
-			-- 					"**/dev/**",
-			-- 					"**/include/**",
-			-- 					"**/generated/**",
-			-- 					"**/vendor/**/{[Tt]ests,[Tt]est}/**",
-			-- 				},
-			-- 			},
-			-- 		},
-			-- 	},
-			-- },
+			intelephense = {
+				init_options = {
+					licenceKey = licenceKey,
+				},
+				settings = {
+					intelephense = {
+						files = {
+							maxSize = 100000000,
+							exclude = {
+								"**/include/**",
+								"**/vendor/**/{[Tt]ests,[Tt]est}/**",
+								"**/dev/**",
+								"**/generated/**",
+							},
+						},
+						references = {
+							exclude = {
+								"**/dev/**",
+								"**/include/**",
+								"**/generated/**",
+								"**/vendor/**/{[Tt]ests,[Tt]est}/**",
+							},
+						},
+					},
+				},
+			},
 
 			lua_ls = {
 				settings = {
@@ -240,10 +242,9 @@ return {
 		require("mason").setup()
 
 		local ensure_installed = vim.tbl_keys(servers or {})
-		vim.list_extend(ensure_installed, {
-			"stylua", -- Used to format Lua code
-			"phpactor", -- https://phpactor.readthedocs.io/en/master/reference/configuration.html#
-		})
+		-- vim.list_extend(ensure_installed, {
+		-- 	"phpactor", -- https://phpactor.readthedocs.io/en/master/reference/configuration.html#
+		-- })
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
 		require("mason-lspconfig").setup({
