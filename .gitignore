@@ -1,3 +1,4 @@
 /nvim/.config/nvim/plugin/*
 /binaries/bin/scripts/server_details_index.yaml
+nvim/.config/nvim/lua/intelephense_licence.lua
 
