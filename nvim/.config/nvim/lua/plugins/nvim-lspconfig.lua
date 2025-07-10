@@ -145,6 +145,9 @@ return {
 				},
 				settings = {
 					intelephense = {
+						format = {
+							enable = false,
+						},
 						files = {
 							maxSize = 100000000,
 							exclude = {

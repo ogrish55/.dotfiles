@@ -4,13 +4,14 @@ return {
 		local function is_valid_file(filepath)
 			if filepath ~= nil and filepath ~= "" then
 				-- Check if the file is ignored by Git
-				local res = vim.fn.systemlist({ "git", "check-ignore", filepath })
-				if #res > 0 and string.find(res[1], "is in submodule") then
-					return true
-				end
-				if #res > 0 then
-					return false
-				end
+
+				-- local res = vim.fn.systemlist({ "git", "check-ignore", filepath })
+				-- if #res > 0 and string.find(res[1], "is in submodule") then
+				-- 	return true
+				-- end
+				-- if #res > 0 then
+				-- 	return false
+				-- end
 
 				local valid_paths = {
 					"app/code/Wexo",
@@ -19,7 +20,7 @@ return {
 				}
 
 				for _, path in ipairs(valid_paths) do
-					if filepath:match(".*" .. path .. ".*") then
+					if filepath:find(path, 1, true) then
 						return true
 					end
 				end
