@@ -136,4 +136,8 @@ vim.keymap.set("v", "p", '"_dP')
 vim.keymap.set("n", "<leader>ut", vim.cmd.UndotreeToggle, { desc = "[U]ndotree [T]oggle" })
 vim.keymap.set("n", "<leader>uf", vim.cmd.UndotreeFocus, { desc = "[U]ndotree [F]ocus" })
 
+--- Disable keysmaps
+vim.keymap.set("n", "ZZ", "<nop>", { desc = "disable ZZ as it quits vim" })
+vim.keymap.set("n", "ZQ", "<nop>", { desc = "disable ZQ as it quits vim" })
+
 return {}
