@@ -134,7 +134,7 @@ return {
 				},
 			},
 			keymap = {
-				preset = "super-tab",
+				preset = "default",
 				["<C-y>"] = { "accept", "fallback" },
 				["<C-k>"] = { "select_prev", "fallback" },
 				["<C-j>"] = { "select_next", "fallback" },
