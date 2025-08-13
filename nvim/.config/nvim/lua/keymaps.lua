@@ -49,11 +49,47 @@ vim.keymap.set("n", "<leader>e", function()
 end, { desc = "[F]ind [E]xisting buffers" })
 
 vim.keymap.set("n", "<leader>w", function()
-	require("fzf-lua").files()
+	require("fzf-lua-frecency").frecency({
+		fd_opts = table.concat({
+			"--color=never ",
+			"--hidden ",
+			"--type f ",
+			"--type l ",
+			"-E '.git' -E 'dev/' -E 'dev/**' -E 'vendor/**/tests/' -E 'vendor/**/Test/' ",
+			"-E 'vendor/composer/' -E 'sync/' -E 'lib/' -E '.idea/' -E 'setup/' -E '.wexo/app/' ",
+			"-E '.wexo/**/*.sql' -E '.wexo/restore/' -E '.wexo/.local/' -E 'generated/' -E 'pub/' ",
+			"-E 'var/' -E 'logs/' -E 'CHANGELOG.md' -E 'node_modules/' -E 'dist/' -E 'public/' ",
+			"-E 'yarn.lock' -E 'composer.lock' ",
+		}),
+		debug = false,
+		stat_file = true,
+		display_score = false,
+		all_files = true,
+		cwd_only = true,
+		db_dir = vim.fs.joinpath(vim.fn.stdpath("data"), "fzf-lua-frecency"),
+	})
 end, { desc = "[F]ind [F]iles" })
 
 vim.keymap.set("n", "<leader>q", function()
-	require("fzf-lua").files()
+	require("fzf-lua-frecency").frecency({
+		fd_opts = table.concat({
+			"--color=never ",
+			"--hidden ",
+			"--type f ",
+			"--type l ",
+			"-E '.git' -E 'dev/' -E 'dev/**' -E 'vendor/**/tests/' -E 'vendor/**/Test/' ",
+			"-E 'vendor/composer/' -E 'sync/' -E 'lib/' -E '.idea/' -E 'setup/' -E '.wexo/app/' ",
+			"-E '.wexo/**/*.sql' -E '.wexo/restore/' -E '.wexo/.local/' -E 'generated/' -E 'pub/' ",
+			"-E 'var/' -E 'logs/' -E 'CHANGELOG.md' -E 'node_modules/' -E 'dist/' -E 'public/' ",
+			"-E 'yarn.lock' -E 'composer.lock' ",
+		}),
+		debug = false,
+		stat_file = true,
+		display_score = false,
+		all_files = true,
+		cwd_only = true,
+		db_dir = vim.fs.joinpath(vim.fn.stdpath("data"), "fzf-lua-frecency"),
+	})
 end, { desc = "[F]ind [F]iles" })
 
 vim.keymap.set("n", "<leader>ff", function()
