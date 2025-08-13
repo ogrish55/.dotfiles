@@ -122,14 +122,13 @@ return {
 		-- capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
 		-- Enable the following language servers
-		--  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
-		--
 		--  Add any additional override configuration in the following tables. Available keys are:
 		--  - cmd (table): Override the default command used to start the server
 		--  - filetypes (table): Override the default list of associated filetypes for the server
 		--  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
 		--  - settings (table): Override the default settings passed when initializing the server.
 		--        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
+		local util = require("lspconfig.util")
 		local servers = {
 			-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
 			--
@@ -139,6 +138,71 @@ return {
 			-- But for many setups, the LSP (`ts_ls`) will work just fine
 			-- ts_ls = {},
 			--
+			lemminx = {
+				root_dir = util.root_pattern("composer.json", ".git"),
+				-- Build absolute file:// URIs for XSDs based on detected root_dir
+				on_new_config = function(new_config, root_dir)
+					local function uri(...)
+						return vim.uri_from_fname(util.path.join(root_dir, ...))
+					end
+
+					new_config.settings = new_config.settings or {}
+					new_config.settings.xml = new_config.settings.xml or {}
+
+					new_config.settings.xml.fileAssociations = {
+						{
+							pattern = "**/etc/di.xml",
+							systemId = uri("vendor", "magento", "framework", "ObjectManager", "etc", "config.xsd"),
+						},
+						{
+							pattern = "**/etc/module.xml",
+							systemId = uri("vendor", "magento", "framework", "Module", "etc", "module.xsd"),
+						},
+						{
+							pattern = "**/etc/events.xml",
+							systemId = uri("vendor", "magento", "framework", "Event", "etc", "events.xsd"),
+						},
+						{
+							pattern = "**/etc/routes.xml",
+							systemId = uri("vendor", "magento", "framework", "App", "etc", "routes.xsd"),
+						},
+						{
+							pattern = "**/etc/acl.xml",
+							systemId = uri("vendor", "magento", "framework", "Acl", "etc", "acl.xsd"),
+						},
+						{
+							pattern = "**/etc/webapi.xml",
+							systemId = uri("vendor", "magento", "module-webapi", "etc", "webapi.xsd"),
+						},
+						{
+							pattern = "**/view/**/layout/*.xml",
+							systemId = uri(
+								"vendor",
+								"magento",
+								"framework",
+								"View",
+								"Layout",
+								"etc",
+								"layout_generic.xsd"
+							),
+						},
+						{
+							pattern = "**/view/**/page_layout/*.xml",
+							systemId = uri(
+								"vendor",
+								"magento",
+								"framework",
+								"View",
+								"PageLayout",
+								"etc",
+								"page_layout.xsd"
+							),
+						},
+					}
+					-- If you later add an XML catalog, enable it here:
+					-- new_config.settings.xml.catalogs = { util.path.join(root_dir, ".lemminx", "catalog.xml") }
+				end,
+			},
 			intelephense = {
 				init_options = {
 					licenceKey = licenceKey,
@@ -256,9 +320,6 @@ return {
 			handlers = {
 				function(server_name)
 					local server = servers[server_name] or {}
-					-- This handles overriding only values explicitly passed
-					-- by the server configuration above. Useful when disabling
-					-- certain features of an LSP (for example, turning off formatting for ts_ls)
 
 					server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
 					server.capabilities = require("blink.cmp").get_lsp_capabilities(server.capabilities)
