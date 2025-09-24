@@ -1,4 +1,5 @@
 local licenceKey = require("intelephense_licence")
+local lemminx = require("lsp.lemminx")
 
 return {
 	-- Main LSP Configuration
@@ -128,81 +129,37 @@ return {
 		--  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
 		--  - settings (table): Override the default settings passed when initializing the server.
 		--        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
+
 		local util = require("lspconfig.util")
+
+		local function magento_root(fname)
+			local git = util.find_git_ancestor(fname)
+			if git then
+				return git
+			end
+
+			local cwd = vim.loop.cwd()
+			if
+				cwd
+				and not cwd:match(util.path.sep .. "vendor" .. util.path.sep)
+				and util.path.exists(util.path.join(cwd, "composer.json"))
+			then
+				return cwd
+			end
+
+			local nearest = util.root_pattern("composer.json")(fname)
+			if nearest and nearest:match(util.path.sep .. "vendor" .. util.path.sep) then
+				local dir = util.path.dirname(nearest)
+				while dir and dir:match(util.path.sep .. "vendor" .. util.path.sep) do
+					dir = util.path.dirname(dir)
+				end
+				return util.root_pattern("composer.json")(dir) or dir
+			end
+
+			return nearest or util.path.dirname(fname)
+		end
+
 		local servers = {
-			-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
-			--
-			-- Some languages (like typescript) have entire language plugins that can be useful:
-			--    https://github.com/pmizio/typescript-tools.nvim
-			--
-			-- But for many setups, the LSP (`ts_ls`) will work just fine
-			-- ts_ls = {},
-			--
-			lemminx = {
-				root_dir = util.root_pattern("composer.json", ".git"),
-				-- Build absolute file:// URIs for XSDs based on detected root_dir
-				on_new_config = function(new_config, root_dir)
-					local function uri(...)
-						return vim.uri_from_fname(util.path.join(root_dir, ...))
-					end
-
-					new_config.settings = new_config.settings or {}
-					new_config.settings.xml = new_config.settings.xml or {}
-
-					new_config.settings.xml.fileAssociations = {
-						{
-							pattern = "**/etc/di.xml",
-							systemId = uri("vendor", "magento", "framework", "ObjectManager", "etc", "config.xsd"),
-						},
-						{
-							pattern = "**/etc/module.xml",
-							systemId = uri("vendor", "magento", "framework", "Module", "etc", "module.xsd"),
-						},
-						{
-							pattern = "**/etc/events.xml",
-							systemId = uri("vendor", "magento", "framework", "Event", "etc", "events.xsd"),
-						},
-						{
-							pattern = "**/etc/routes.xml",
-							systemId = uri("vendor", "magento", "framework", "App", "etc", "routes.xsd"),
-						},
-						{
-							pattern = "**/etc/acl.xml",
-							systemId = uri("vendor", "magento", "framework", "Acl", "etc", "acl.xsd"),
-						},
-						{
-							pattern = "**/etc/webapi.xml",
-							systemId = uri("vendor", "magento", "module-webapi", "etc", "webapi.xsd"),
-						},
-						{
-							pattern = "**/view/**/layout/*.xml",
-							systemId = uri(
-								"vendor",
-								"magento",
-								"framework",
-								"View",
-								"Layout",
-								"etc",
-								"layout_generic.xsd"
-							),
-						},
-						{
-							pattern = "**/view/**/page_layout/*.xml",
-							systemId = uri(
-								"vendor",
-								"magento",
-								"framework",
-								"View",
-								"PageLayout",
-								"etc",
-								"page_layout.xsd"
-							),
-						},
-					}
-					-- If you later add an XML catalog, enable it here:
-					-- new_config.settings.xml.catalogs = { util.path.join(root_dir, ".lemminx", "catalog.xml") }
-				end,
-			},
 			intelephense = {
 				init_options = {
 					licenceKey = licenceKey,
@@ -304,6 +261,7 @@ return {
 				},
 			},
 		}
+		servers.lemminx = vim.tbl_deep_extend("force", servers.lemminx or {}, lemminx.build_config())
 
 		--  You can press `g?` for help in this menu.
 		require("mason").setup()
