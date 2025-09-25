@@ -1,5 +1,6 @@
 local api = vim.api
 
+-- set buffer name color based on gitignore
 api.nvim_create_autocmd({ "BufWinEnter" }, {
 	group = api.nvim_create_augroup("personal-winbar-highlight", { clear = true }),
 	pattern = "*",
@@ -22,11 +23,20 @@ api.nvim_create_autocmd({ "BufWinEnter" }, {
 	end,
 })
 
+-- set shiftwidt and tabsize for vue
 api.nvim_create_autocmd("Filetype", {
 	pattern = "vue",
 	callback = function()
 		vim.opt_local.shiftwidth = 2
 		vim.opt_local.tabstop = 2
 		vim.opt_local.expandtab = true
+	end,
+})
+
+-- Enable relative numbers in netrw
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "netrw",
+	callback = function()
+		vim.opt_local.relativenumber = true
 	end,
 })
