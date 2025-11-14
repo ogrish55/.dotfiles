@@ -39,7 +39,7 @@ opt.showmatch = true -- show matching brackets
 
 -- trying stack for jumplist --
 -- see :h jumpoptions
-opt.jumpoptions = { "stack", "clean" }
+opt.jumpoptions = { "view", "clean" }
 
 vim.diagnostic.config({
 	-- virtual_lines = { current_line = true },
