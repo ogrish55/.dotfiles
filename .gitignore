@@ -2,4 +2,7 @@
 /binaries/bin/scripts/server_details_index.yaml
 nvim/.config/nvim/lua/intelephense_licence.lua
 /zsh/.zshrc.secrets
+/claude/.claude/*
+!/claude/.claude/settings.json
+keys
 

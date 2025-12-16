@@ -26,6 +26,7 @@ export HOMEBREW_NO_AUTO_UPDATE=1
 
 # claude
 export ANTHROPIC_DEFAULT_SONNET_MODEL=minimax-m2[1m]
+export ANTHROPIC_DEFAULT_HAIKU_MODEL=minimax-m2[1m]
 export ANTHROPIC_BASE_URL="https://llm.wexo.io"
 
 # Load local secrets (not committed)
