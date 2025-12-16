@@ -23,6 +23,16 @@ export LESS="-IRN --incsearch"
 export RIPGREP_CONFIG_PATH="$HOME/.dotfiles/ripgrep/.ripgreprc"
 export HOMEBREW_NO_AUTO_UPDATE=1
 
+
+# claude
+export ANTHROPIC_DEFAULT_SONNET_MODEL=minimax-m2[1m]
+export ANTHROPIC_BASE_URL="https://llm.wexo.io"
+
+# Load local secrets (not committed)
+if [ -f "$HOME/.dotfiles/zsh/.zshrc.secrets" ]; then
+  source "$HOME/.dotfiles/zsh/.zshrc.secrets"
+fi
+
 #kubectl binary plugin
 export USE_GKE_GCLOUD_AUTH_PLUGIN=true
 
@@ -136,7 +146,7 @@ alias t='tmux'
 alias odf='vim ~/.dotfiles'
 alias wcm='wexocommit'
 alias wgb='git branch -a | fzf | sed "s#remotes/origin/##" | xargs git switch'
-alias wgbs='git checkout staging'
+alias wgbs='git checkout staging && git pull'
 alias wso='wexo stop'
 alias wsa='wexo start'
 

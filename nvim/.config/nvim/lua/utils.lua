@@ -26,7 +26,7 @@ M.deleteAllBuffers = function()
 	for _, buf in ipairs(vim.api.nvim_list_bufs()) do
 		if vim.api.nvim_buf_is_valid(buf) and vim.bo[buf].buflisted then
 			if buf ~= current and buf ~= previous and vim.bo[buf].buftype ~= "terminal" then
-				vim.cmd("bdelete " .. buf)
+				vim.cmd("bdelete! " .. buf)
 			end
 		end
 	end
