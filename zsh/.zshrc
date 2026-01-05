@@ -25,9 +25,11 @@ export HOMEBREW_NO_AUTO_UPDATE=1
 
 
 # claude
-export ANTHROPIC_DEFAULT_SONNET_MODEL=minimax-m2[1m]
-export ANTHROPIC_DEFAULT_HAIKU_MODEL=minimax-m2[1m]
+# export ANTHROPIC_DEFAULT_SONNET_MODEL=minimax-m2[1m]
+#export ANTHROPIC_DEFAULT_HAIKU_MODEL=minimax-m2[1m]
 export ANTHROPIC_BASE_URL="https://llm.wexo.io"
+export ANTHROPIC_DEFAULT_SONNET_MODEL=wexollm
+export ANTHROPIC_DEFAULT_HAIKU_MODEL=wexollm
 
 # Load local secrets (not committed)
 if [ -f "$HOME/.dotfiles/zsh/.zshrc.secrets" ]; then
