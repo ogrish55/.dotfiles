@@ -5,24 +5,26 @@ declare -A folders
 if [[ $# -eq 1 ]]; then
   selected=$1
 else
-  result=$(find ~/Projects -mindepth 1 -maxdepth 1 -type d -not -path "/Users/wexokk/Projects/daarbakgroup" | \
-    echo -e "$(cat -)\n/Users/wexokk" | \
-    echo -e "$(cat -)\n/Users/wexokk/.dotfiles" | \
-    echo -e "$(cat -)\n/Users/wexokk/Projects/daarbakgroup/backend/daarbak-orders" | \
-    echo -e "$(cat -)\n/Users/wexokk/Projects/daarbakgroup/backend/modules" | \
-    echo -e "$(cat -)\n/Users/wexokk/Projects/daarbakgroup/backend/modules-composer" | \
-    echo -e "$(cat -)\n/Users/wexokk/Projects/daarbakgroup/backend/patches" | \
-    echo -e "$(cat -)\n/Users/wexokk/Projects/daarbakgroup/backend/roso-backend" | \
-    echo -e "$(cat -)\n/Users/wexokk/Projects/daarbakgroup/backend/scanoffice-backend" | \
-    echo -e "$(cat -)\n/Users/wexokk/Projects/daarbakgroup/frontend/roso-frontend" | \
-    echo -e "$(cat -)\n/Users/wexokk/Projects/daarbakgroup/middleware" | \
-    echo -e "$(cat -)\n/Users/wexokk/Projects/daarbakgroup/strapi" | \
-    echo -e "$(cat -)\n/Users/wexokk/Projects/personal/minmadbog" \
-    )
+  result=$({
+    find ~/Projects -mindepth 1 -maxdepth 1 -type d -not -path "/Users/wexokk/Projects/daarbakgroup" -not -path "/Users/wexokk/Projects/personal" -not -path "/Users/wexokk/Projects/side-projects"
+    echo "/Users/wexokk"
+    echo "/Users/wexokk/.dotfiles"
+    find ~/Projects/personal -mindepth 1 -maxdepth 1 -type d 2>/dev/null
+    find ~/Projects/side-projects -mindepth 1 -maxdepth 1 -type d 2>/dev/null
+    find ~/Projects/daarbakgroup/backend -mindepth 1 -maxdepth 1 -type d 2>/dev/null
+    find ~/Projects/daarbakgroup/frontend -mindepth 1 -maxdepth 1 -type d 2>/dev/null
+    find ~/Projects/daarbakgroup -mindepth 1 -maxdepth 1 -type d -not -path "*/backend" -not -path "*/frontend" 2>/dev/null
+  })
 fi
 
 while IFS= read -r line; do
-  key=$(basename "$line")
+  if [[ "$line" =~ /Projects/personal/ ]]; then
+    key="personal - $(basename "$line")"
+  elif [[ "$line" =~ /Projects/side-projects/ ]]; then
+    key="side-projects - $(basename "$line")"
+  else
+    key=$(basename "$line")
+  fi
   folders["$key"]="$line"
 done <<< $result
 
